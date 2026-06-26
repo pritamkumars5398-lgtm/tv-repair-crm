@@ -142,8 +142,8 @@ export default function AboutPage() {
       <section className="py-0 overflow-hidden">
         <div className="grid grid-cols-3 h-52">
           {[
-            'https://images.unsplash.com/photo-1593359863503-a54b98ade4d8?w=600&q=75',
-            'https://images.unsplash.com/photo-1574717024453-354056adc766?w=600&q=75',
+            'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&q=75',
+            'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=75',
             'https://images.unsplash.com/photo-1545454675-3479531426e2?w=600&q=75',
           ].map((src, i) => (
             <div key={i} className="relative overflow-hidden">

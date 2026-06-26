@@ -6,6 +6,7 @@ import {
   Speaker, Headphones, Shield, Clock, CheckCircle2,
   Star, ArrowRight, Phone, Mail, MapPin, ChevronRight,
 } from 'lucide-react';
+import { HeroSlideshow } from '@/components/website/HeroSlideshow';
 
 export const metadata: Metadata = {
   title: 'RepairCart — TV Repair & Speaker Manufacturing in Mumbai',
@@ -52,7 +53,7 @@ export default function HomePage() {
       <section className="relative bg-neutral-900 text-white pt-32 pb-24 overflow-hidden">
         {/* Background image */}
         <Image
-          src="https://images.unsplash.com/photo-1593359863503-a54b98ade4d8?w=1600&q=80"
+          src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1600&q=80"
           alt="Technician repairing TV"
           fill
           className="object-cover opacity-20"
@@ -89,12 +90,7 @@ export default function HomePage() {
             {/* Hero image card */}
             <div className="hidden lg:block relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-80">
-                <Image
-                  src="https://images.unsplash.com/photo-1581092918056-0c4c3aebb8e9?w=900&q=85"
-                  alt="Technician working on electronics"
-                  fill
-                  className="object-cover"
-                />
+                <HeroSlideshow />
               </div>
               {/* Floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-4 py-3 shadow-xl flex items-center gap-3">
@@ -239,7 +235,7 @@ export default function HomePage() {
               { step: '01', title: 'Book Online',        desc: 'Fill a quick form and pay ₹250 service visit fee to confirm.',           img: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&q=75' },
               { step: '02', title: 'Technician Visits',  desc: 'Certified technician arrives at your home at the scheduled time.',       img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=75' },
               { step: '03', title: 'Diagnosis & Quote',  desc: 'We identify the issue and share a repair estimate before starting.',     img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=75' },
-              { step: '04', title: 'Repaired & Returned',desc: 'Your TV is fixed and returned with a 30-day warranty.',                  img: 'https://images.unsplash.com/photo-1593359863503-a54b98ade4d8?w=400&q=75' },
+              { step: '04', title: 'Repaired & Returned',desc: 'Your TV is fixed and returned with a 30-day warranty.',                  img: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400&q=75' },
             ].map((item, i) => (
               <div key={item.step} className="relative">
                 <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
@@ -292,7 +288,7 @@ export default function HomePage() {
       {/* ── CTA Banner ── */}
       <section className="relative py-20 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1574717024453-354056adc766?w=1600&q=80"
+          src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1600&q=80"
           alt="TV repair background"
           fill
           className="object-cover"
