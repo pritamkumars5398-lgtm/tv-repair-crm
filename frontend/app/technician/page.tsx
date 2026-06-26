@@ -7,7 +7,7 @@ export default function TechnicianDashboardPage() {
         <h1 className="text-3xl font-semibold">Technician Dashboard</h1>
         <p className="mt-4 text-slate-600">View assigned service jobs, update ticket status, and manage parts for repairs.</p>
         <div className="mt-8 space-y-4 text-sm text-slate-700">
-          <p>• See today's service schedule</p>
+          <p>• See today&apos;s service schedule</p>
           <p>• Update repair progress and diagnostic notes</p>
           <p>• Access customer contact details and device history</p>
         </div>
