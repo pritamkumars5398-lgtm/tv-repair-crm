@@ -6,32 +6,65 @@ import Image from 'next/image';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Shield, Award, Users, CheckCircle2, Wrench, ArrowRight } from 'lucide-react';
-
-const stats = [
-  { value: '2016', label: 'Founded' },
-  { value: '8+', label: 'Years of service' },
-  { value: '5,000+', label: 'Devices repaired' },
-  { value: '15+', label: 'Expert technicians' },
-];
+import { CompanyProfile } from '@/components/website/CompanyProfile';
 
 const capabilities = [
-  'Component-level PCB repair and rework',
-  'OLED, QLED, LED, and Smart TV diagnostics',
+  'Display Repair up to 85Inch LED TV',
+  'Polarizer replacement facility',
+  'Mobile Phone Displays OGS (Folder) repair',
+  'Component-level PCB repair up to L4 level',
   'Custom speaker cabinet design and manufacturing',
-  'Home theater audio system calibration',
-  'Pick-up and drop-off service across the city',
-  'Same-day repair for most common TV issues',
-  'OEM and genuine spare parts sourcing',
-  '30-day repair warranty on all services',
+  'DOA Management and Reverse Logistics',
+  'OEM and genuine spare parts sourcing from China',
+  'Equal to New (ETN) product refurbishment',
 ];
 
-const brands = ['Samsung', 'LG', 'Sony', 'Panasonic', 'Mi', 'OnePlus', 'Vu', 'Hisense'];
+const clientele = [
+  'INTEX', 'Aiwa', 'Sansui', 'Bajaj Allianz', 'ARG', 'Oscar', 'Zebronics', 'Zopper',
+  'Modish', 'Veego', 'Foxsky', 'Amazon', 'Melbon', 'Croma', 'Flipkart', 'Murphy',
+  'F&D', 'Reliance Digital', 'Impex', 'TMB'
+];
+const journey = [
+  { year: '1984', title: 'Audio Cassettes' },
+  { year: '1987', title: 'Push button phone' },
+  { year: '1992', title: 'Walkman & Audio cassette player' },
+  { year: '1995', title: 'Video games' },
+  { year: '2002', title: 'Intercom' },
+  { year: '2004', title: 'Multimedia home theater system' },
+  { year: '2008', title: 'LED Bulb' },
+  { year: '2014', title: 'Mobile phone' },
+  { year: '2018', title: 'LED TV, PCB of AC, Washing machine and other house hold electronics' },
+];
 
-const team = [
-  { name: 'Amit Kumar', role: 'Lead Technician', exp: '10 yrs' },
-  { name: 'Ravi Sharma', role: 'Speaker Engineer', exp: '7 yrs' },
-  { name: 'Sunil Verma', role: 'Field Technician', exp: '5 yrs' },
-  { name: 'Deepak Singh', role: 'Senior Technician', exp: '8 yrs' },
+const infraFeatures = [
+  'We operate in area of 20000sq feet state of art repairing center with latest Testing, Store, Bonding, Polarization machine, clean room and inspection and quality check center.',
+  'Esd flooring with esd protecting area.',
+  'Class 100K clean room for panel work.',
+  'Temprature maintain reliability room.',
+  '4000 sq. ft. clean room area.',
+  '6000 sq. ft. area for store.',
+  '6000 sq. ft. area for production (Speaker, Home theater, Multi line intercom system...)',
+  '40ft container can park have big parking space.',
+  'Lift facility available for material movement.'
+];
+
+const whyUs = [
+  'LONGWELL ELECTRONICS provides remarkable quality in products and services at best price. And our wide experience distinguishes us from others.',
+  'We have a team of well qualified and experienced service engineers.',
+  'Along with repair and manufacturing, Longwell Electronics is Expertise in import and export and marketing assistance for their client.',
+  'Longwell Electronics has experts to assist their clients how to reduce after sales cost.',
+  'We have office in China also (SHENZHEN), so get Original Spare parts At BEST PRICE.'
+];
+
+const strengthsText = 'We have a close relationship with Chinese players from same field who keep us updated with the trends and technology. As we have office in china also so we import and get almost all spare parts from their. This help us to increase our yield percentage.';
+const strengths = [
+  'Display Repair upto 85Inch LED TV.',
+  'Polarizer replacement facility.',
+  'Yield up to 85% for field failure units and up to 90% for line rejection.',
+  'Development Source for LED TV Strip.',
+  'Motherboard repair up to L4 level.',
+  'Own CRM for device tracking and repaired Product life cycle management.',
+  'Reverse Logistics Management.'
 ];
 
 export default function AboutPageClient() {
@@ -57,12 +90,12 @@ export default function AboutPageClient() {
         <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] items-center">
             <div className="max-w-2xl">
-              <p data-aos="fade-right" className="text-primary-400 text-sm font-bold uppercase tracking-[0.2em] mb-4">About Us</p>
+              <p data-aos="fade-right" className="text-primary-400 text-sm font-bold uppercase tracking-[0.2em] mb-4"><span className='text-white'>About Us</span></p>
               <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.05]">
-                RepairCart — your trusted <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">TV repair</span> and speaker service.
+                Longwell Electronics — <span className="text-white bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">world class</span> repair environment.
               </h1>
               <p data-aos="fade-up" data-aos-delay="200" className="mt-8 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-xl font-light">
-                Since 2016, we have restored thousands of screens and built premium audio solutions with honest pricing, certified technicians, and a 30-day warranty.
+                Since 1984, we have provided remarkable quality in products and services at the best price. Our wide experience and advanced infrastructure distinguishes us.
               </p>
               <div data-aos="fade-up" data-aos-delay="300" className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link
@@ -109,16 +142,16 @@ export default function AboutPageClient() {
           <div className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] items-start">
             <div data-aos="fade-right">
               <div className="inline-flex items-center gap-3 rounded-full bg-primary-50 border border-primary-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-700 shadow-sm">
-                Trusted since 2016
+                Established 1984
               </div>
               <h2 className="mt-8 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl leading-tight">
-                Built on trust, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-orange-400">driven by quality.</span>
+                A legacy of <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-orange-400">innovation & quality.</span>
               </h2>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-600">
-                We began as a small TV repair workshop in Mumbai and grew through honest service, genuine parts, and customer-first care. Today, RepairCart is recognized for fast diagnostics, expert repairs, and premium speaker craftsmanship.
+                Starting with audio cassettes in 1984, we evolved into a comprehensive electronics manufacturing and repair powerhouse. Today, we handle advanced LED TV panels, mobile displays, and complex PCBs.
               </p>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-                Our focus remains the same: deliver reliable repairs with clear pricing, quick turnarounds, and a warranty you can trust.
+                With a close relationship with Chinese players and an office in Shenzhen, we ensure the availability of original spare parts at the best prices, resulting in a yield percentage of up to 90%.
               </p>
 
               <div className="mt-12 grid gap-5 sm:grid-cols-2">
@@ -157,27 +190,27 @@ export default function AboutPageClient() {
                 </div>
               </div>
               <div className="rounded-[2.5rem] bg-slate-950 p-10 text-white shadow-2xl" data-aos="fade-up">
-                <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">Vision</p>
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">Our Vision</p>
                 <p className="text-xl leading-relaxed font-medium">
-                  To be the most trusted home electronics service partner in India — where every customer receives fast, reliable, and affordable repair without worry.
+                  is to be the number one company in terms of <span className="text-primary-400 font-bold">quality service</span> where we cater all electronics products.
                 </p>
               </div>
               <div className="rounded-[2.5rem] bg-gradient-to-br from-primary-600 to-primary-700 p-10 text-white shadow-2xl shadow-primary-600/30" data-aos="fade-up" data-aos-delay={100}>
                 <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary-200 mb-4">Mission</p>
                 <p className="text-xl leading-relaxed text-primary-50 font-medium">
-                  Deliver world-class TV repair and audio manufacturing using certified technicians, genuine parts, and transparent pricing — backed by a no-questions warranty.
+                  is to provide the world class repairing solution covering almost every brand.
                 </p>
               </div>
               <div className="rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-lg shadow-slate-200/50" data-aos="fade-up" data-aos-delay={200}>
                 <div className="flex items-center gap-4 text-slate-900 mb-6">
                   <div className="h-12 w-12 rounded-xl bg-primary-50 flex items-center justify-center">
-                    <Wrench className="h-6 w-6 text-primary-600" strokeWidth={2} />
+                    <Users className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <p className="text-lg font-bold">All brand support</p>
+                  <p className="text-lg font-bold">Our clientele</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {brands.map((brand) => (
-                    <span key={brand} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors">
+                  {clientele.map((brand) => (
+                    <span key={brand} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:border-primary-200 hover:text-primary-700 transition-colors shadow-sm cursor-default">
                       {brand}
                     </span>
                   ))}
@@ -204,63 +237,24 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-24 relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div className="rounded-[2.5rem] border border-slate-100 bg-white p-10 shadow-xl shadow-slate-200/50" data-aos="fade-right">
-              <h2 className="text-3xl font-bold text-slate-900 mb-8">What we can do</h2>
-              <ul className="space-y-5">
-                {capabilities.map((capability, index) => (
-                  <li key={capability} className="flex gap-4 items-start" data-aos="fade-up" data-aos-delay={index * 70}>
-                    <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-100 text-primary-600">
-                      <CheckCircle2 className="h-5 w-5" />
-                    </span>
-                    <span className="text-base leading-relaxed text-slate-700 font-medium">{capability}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-[2.5rem] border border-slate-100 bg-white p-10 shadow-xl shadow-slate-200/50" data-aos="fade-left">
-              <h2 className="text-3xl font-bold text-slate-900 mb-8">Our team</h2>
-              <div className="grid gap-6 sm:grid-cols-2">
-                {team.map((member, index) => (
-                  <div key={member.name} className="rounded-3xl bg-slate-50 border border-slate-100 p-6 hover:shadow-md hover:border-primary-100 transition-all duration-300" data-aos="zoom-in" data-aos-delay={index * 100}>
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm text-primary-600">
-                        <Users className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <p className="text-lg font-bold text-slate-900">{member.name}</p>
-                        <p className="text-sm font-medium text-slate-500">{member.role}</p>
-                      </div>
-                    </div>
-                    <div className="mt-5 inline-block rounded-full bg-primary-50 px-3 py-1 text-xs font-bold text-primary-700">
-                      {member.exp} experience
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CompanyProfile />
 
       <section className="bg-slate-950 py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-primary-900/30 via-slate-950 to-slate-950" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="flex flex-col lg:flex-row gap-10 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl p-10 sm:p-14 lg:items-center lg:justify-between shadow-2xl" data-aos="zoom-in">
             <div className="max-w-2xl">
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary-400">Book your service</p>
-              <h2 className="mt-4 text-3xl font-bold text-white sm:text-5xl leading-tight">Ready to get your TV fixed today?</h2>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary-400">Partner with Us</p>
+              <h2 className="mt-4 text-3xl font-bold text-white sm:text-5xl leading-tight">Need a reliable service partner?</h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-300">
-                Certified technician at your doorstep for just ₹250, with quick pick-up and reliable repair backed by warranty.
+                From DOA management and OEM repairs to comprehensive recycling solutions, we provide scalable end-to-end services.
               </p>
             </div>
             <Link
-              href="/book"
+              href="/contact"
               className="inline-flex shrink-0 items-center justify-center rounded-full bg-primary-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary-500/30 transition-all hover:bg-primary-500 hover:-translate-y-1"
             >
-              Book a Service <ArrowRight className="ml-3 h-5 w-5" />
+              Contact Us Now <ArrowRight className="ml-3 h-5 w-5" />
             </Link>
           </div>
         </div>

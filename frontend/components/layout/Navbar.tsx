@@ -7,8 +7,10 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { href: '/services', label: 'Services' },
+  { href: '/infrastructure', label: 'Infrastructure' },
   { href: '/products', label: 'Products' },
   { href: '/about',    label: 'About' },
+  { href: '/blog',     label: 'Blog' },
   { href: '/contact',  label: 'Contact' },
 ];
 
@@ -91,7 +93,7 @@ export function Navbar() {
                 Track Repair
               </Link>
               <Link href="/book" className="block px-3 py-2 text-sm font-semibold text-center text-white bg-primary-600 rounded" onClick={() => setIsOpen(false)}>
-                Book Now — ₹250
+                Book Now
               </Link>
             </div>
           </div>

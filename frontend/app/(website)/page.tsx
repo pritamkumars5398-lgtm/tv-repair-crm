@@ -7,64 +7,90 @@ import {
   Star, ArrowRight, Phone, Mail, MapPin, ChevronRight,
 } from 'lucide-react';
 import { HeroSlideshow } from '@/components/website/HeroSlideshow';
-
+import { ClienteleMarquee } from '@/components/website/ClienteleMarquee';
+import { CompanyProfile } from '@/components/website/CompanyProfile';
 export const metadata: Metadata = {
-  title: 'RepairCart — TV Repair & Speaker Manufacturing in Mumbai',
-  description: 'RepairCart — Expert LED & Smart TV repair, screen replacement, and premium speaker manufacturing in Mumbai. Certified technicians, genuine parts, 30-day warranty.',
+  title: 'Longwell Electronics — Electronics Repair & Manufacturing',
+  description: 'Longwell Electronics — World class manufacturing and repair environment. LED TV Panel Repair, Mobile Glass Repair, Speaker Manufacturing, DOA Management.',
 };
 
 const services = [
-  { icon: Tv,         title: 'LED TV Repair',         desc: 'All brands. Any issue fixed.' },
-  { icon: Zap,        title: 'Smart TV Repair',        desc: 'Android TV, webOS, Tizen.' },
-  { icon: Wrench,     title: 'Motherboard Repair',     desc: 'Component-level PCB repair.' },
-  { icon: Monitor,    title: 'Screen Replacement',     desc: 'Genuine panels, all sizes.' },
-  { icon: Lightbulb,  title: 'Backlight Repair',       desc: 'LED strips & driver repair.' },
-  { icon: Sparkles,   title: 'Polarizer Change',       desc: 'Screen clarity restoration.' },
-  { icon: Speaker,    title: 'Speaker Manufacturing',  desc: 'Custom premium speakers.' },
-  { icon: Headphones, title: 'Home Theater Setup',     desc: 'Full surround installation.' },
+  { icon: Tv, title: 'LED TV Panel Repair', desc: 'Repairing up to 85 inch panels with Class 100K clean room.' },
+  { icon: Zap, title: 'Mobile Touch Repair', desc: 'Glass, Touch Panels, Reflectors, and Polarizers replacement.' },
+  { icon: Speaker, title: 'Speaker Manufacturing', desc: 'Portable speakers, Home theater, Tower speakers.' },
+  { icon: Wrench, title: 'Component Level Repair', desc: 'PCB, AC, Washing machine boards, and other electronics.' },
+  { icon: Shield, title: 'DOA Management', desc: 'Check, repair, and refurbish DOA stocks for redeployment.' },
+  { icon: Sparkles, title: 'Refurbishment (ETN)', desc: 'Equal to New product refurbishment.' },
+  { icon: Clock, title: 'Parts Cannibalization', desc: 'Efficient parts swap and sorting services.' },
+  { icon: Lightbulb, title: 'Recycling Support', desc: 'Recycling Beyond Economic Repair products appropriately.' },
 ];
 
 const stats = [
-  { value: '5,000+', label: 'TVs Repaired' },
-  { value: '4,200+', label: 'Happy Customers' },
-  { value: '8+',     label: 'Years Experience' },
-  { value: '50+',    label: 'Brands Supported' },
+  { value: '20,000+', label: 'Sq Ft Facility' },
+  { value: '6,000+', label: 'Repairs / Month' },
+  { value: '100K', label: 'Clean Room Class' },
+  { value: '100%', label: 'OQA Inspection' },
 ];
 
 const features = [
-  { icon: Shield,       title: 'Certified Technicians', desc: 'Factory-trained and certified for all major TV brands.' },
-  { icon: CheckCircle2, title: 'Genuine Parts',          desc: 'OEM-grade components only. No cheap imitations.' },
-  { icon: Clock,        title: 'Same-Day Service',       desc: 'Most repairs done the same day at our workshop.' },
-  { icon: Star,         title: '30-Day Warranty',        desc: 'Every repair covered by our worry-free warranty.' },
+  { icon: Shield, title: 'Professional Infrastructure', desc: 'State-of-the-art repair center with latest testing, bonding, and clean room facilities.' },
+  { icon: CheckCircle2, title: 'Quality Assurance', desc: 'Yield up to 85% for field failure units and 90% for line rejection.' },
+  { icon: Clock, title: 'TAT Guarantee', desc: 'Turn around time guarantee for services with fully automatized SOP.' },
+  { icon: MapPin, title: 'Reverse Logistics', desc: 'Efficient domestic RMA and transportation services.' },
 ];
 
 const testimonials = [
-  { name: 'Rahul Sharma', rating: 5, text: 'Samsung 55" had a black screen. Diagnosed and fixed in 6 hours. Excellent, professional service.', service: 'LED TV Repair' },
-  { name: 'Priya Mehta',  rating: 5, text: 'Technician arrived on time, explained the issue clearly. TV has been working perfectly for months.', service: 'Smart TV Repair' },
-  { name: 'Suresh Patel', rating: 5, text: 'Ordered custom speakers for my living room. Exceptional build quality and sound. Highly recommend!', service: 'Speaker Manufacturing' },
+  { name: 'OEM Partner', rating: 5, text: 'Longwell Electronics has helped us save major costs incurred towards mobile phone display replacements with their OGS repair capability.', service: 'Mobile Repair' },
+  { name: 'Retail Brand', rating: 5, text: 'Their DOA management and ETN refurbishment has significantly reduced our cost and improved field redeployment.', service: 'DOA Management' },
+  { name: 'Electronics Brand', rating: 5, text: 'The 20,000 sq ft facility and Class 1000/10000 clean rooms ensure perfect panel bonding and polarizer replacement.', service: 'Panel Repair' },
 ];
 
-const brands = ['Samsung', 'LG', 'Sony', 'Panasonic', 'Mi', 'OnePlus', 'Vu', 'Hisense', 'TCL', 'Philips'];
 
+const blogPosts = [
+  {
+    id: 1,
+    title: 'The Future of LED Panel Repair: Class 100K Clean Rooms',
+    category: 'Technology',
+    date: 'Oct 12, 2023',
+    desc: 'Discover how advanced clean room environments are revolutionizing the way we bond and repair large-scale LED panels.',
+    img: 'https://images.unsplash.com/photo-1581092918056-0c4c3aebb8e9?w=600&q=80'
+  },
+  {
+    id: 2,
+    title: 'Why DOA Management is Crucial for Electronics Brands',
+    category: 'Business',
+    date: 'Nov 05, 2023',
+    desc: 'Dead on Arrival (DOA) stock can bleed revenue. Learn how proper refurbishment and master checking can save millions.',
+    img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80'
+  },
+  {
+    id: 3,
+    title: 'Sustainable E-Waste: Recycling Beyond Economic Repair',
+    category: 'Sustainability',
+    date: 'Nov 28, 2023',
+    desc: 'E-waste is a growing concern. Explore our eco-friendly recycling processes for units that are beyond economic repair.',
+    img: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80'
+  }
+];
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'RepairCart',
-  description: 'Expert LED & Smart TV repair, screen replacement, and premium speaker manufacturing in Mumbai.',
-  url: 'https://www.repaircart.in',
-  telephone: '+919876543210',
-  email: 'info@repaircart.in',
+  name: 'Longwell Electronics',
+  description: 'World class manufacturing and repair environment for LED TVs, Mobile phones, and Speakers.',
+  url: 'https://www.longwellelectronics.com',
+  telephone: '+919811881117',
+  email: 'imrankhanik8463@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '123 Service Street, Electronics Hub',
-    addressLocality: 'Mumbai',
-    addressRegion: 'Maharashtra',
-    postalCode: '400001',
+    streetAddress: 'C-295 Sector 10',
+    addressLocality: 'Noida',
+    addressRegion: 'Uttar Pradesh',
+    postalCode: '201301',
     addressCountry: 'IN',
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 18.9, longitude: 72.8 },
+  geo: { '@type': 'GeoCoordinates', latitude: 28.5885, longitude: 77.3175 },
   openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '19:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '19:00' },
   ],
   priceRange: '₹₹',
   image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1200&q=80',
@@ -81,32 +107,32 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/40 via-slate-950 to-slate-950" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1600&q=80')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-primary-600/20 rounded-full blur-[120px] pointer-events-none" />
-        
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p data-aos="fade-up" className="text-primary-400 text-sm font-bold uppercase tracking-[0.2em] mb-5">
-                RepairCart — We Fix It Right
+                Longwell Electronics
               </p>
               <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
-                What needs<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">repairing?</span>
+                Total Solutions for<br />
+                <span className="text-white bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Electronics.</span>
               </h1>
               <p data-aos="fade-up" data-aos-delay="200" className="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl font-light">
-                LED TVs, Smart TVs, speakers, home theaters — we fix everything with certified technicians and genuine parts.
+                World class manufacturing and repair environment. We specialize in LED TV panels, mobile phone displays, speaker manufacturing, and DOA management.
               </p>
               <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4">
                 <Link
-                  href="/book"
+                  href="/services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white font-semibold rounded-full shadow-lg shadow-primary-600/30 hover:shadow-primary-600/50 hover:-translate-y-0.5 transition-all duration-300 text-sm"
                 >
-                  Book a Repair — ₹250 <ArrowRight className="h-4 w-4" />
+                  Explore Services <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/track"
+                  href="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-medium rounded-full border border-white/10 hover:border-white/20 backdrop-blur-md transition-all duration-300 text-sm"
                 >
-                  Track Your Repair
+                  Contact Us
                 </Link>
               </div>
             </div>
@@ -217,10 +243,10 @@ export default function HomePage() {
             <div>
               <p data-aos="fade-up" className="text-primary-600 text-sm font-bold uppercase tracking-widest mb-3">Why Choose Us</p>
               <h2 data-aos="fade-up" data-aos-delay="100" className="text-4xl font-bold text-slate-900 mb-6 leading-tight">
-                Repairs done right,<br />every single time.
+                Quality service and<br />customer satisfaction.
               </h2>
               <p data-aos="fade-up" data-aos-delay="200" className="text-slate-600 leading-relaxed mb-10 text-lg">
-                We have been fixing TVs and building speakers in Mumbai since 2016. Our certified technicians use only genuine parts and back every repair with a 30-day warranty.
+                Longwell Electronics provides remarkable quality in products and services at best prices. With a 20,000 sq ft facility, clean rooms, and close relationships with Chinese spare part manufacturers, we ensure high yield percentages.
               </p>
               <div className="grid sm:grid-cols-2 gap-6 mb-10">
                 {features.map((f, i) => (
@@ -243,24 +269,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Brands ── */}
-      <section className="py-14 bg-white border-b border-neutral-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-8">
-            All brands supported
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {brands.map((brand) => (
-              <span
-                key={brand}
-                className="px-5 py-2 bg-white text-sm font-medium text-neutral-700 rounded-full border border-neutral-200 shadow-sm"
-              >
-                {brand}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ClienteleMarquee />
+      <CompanyProfile />
 
       {/* ── How It Works ── */}
       <section className="py-24 bg-white">
@@ -271,10 +281,10 @@ export default function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { step: '01', title: 'Book Online',        desc: 'Fill a quick form and pay ₹250 service visit fee to confirm.',           img: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&q=75' },
-              { step: '02', title: 'Technician Visits',  desc: 'Certified technician arrives at your home at the scheduled time.',       img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=75' },
-              { step: '03', title: 'Diagnosis & Quote',  desc: 'We identify the issue and share a repair estimate before starting.',     img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=75' },
-              { step: '04', title: 'Repaired & Returned',desc: 'Your TV is fixed and returned with a 30-day warranty.',                  img: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400&q=75' },
+              { step: '01', title: 'Book Online', desc: 'Fill a quick form and pay ₹250 service visit fee to confirm.', img: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&q=75' },
+              { step: '02', title: 'Technician Visits', desc: 'Certified technician arrives at your home at the scheduled time.', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=75' },
+              { step: '03', title: 'Diagnosis & Quote', desc: 'We identify the issue and share a repair estimate before starting.', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=75' },
+              { step: '04', title: 'Repaired & Returned', desc: 'Your TV is fixed and returned with a 30-day warranty.', img: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400&q=75' },
             ].map((item, i) => (
               <div key={item.step} className="relative group" data-aos="fade-up" data-aos-delay={i * 100}>
                 <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
@@ -328,6 +338,61 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Blog Section ── */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100/50 rounded-full blur-[100px] pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-14 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-up">
+            <div>
+              <p className="text-primary-600 text-sm font-bold uppercase tracking-[0.2em] mb-3">Insights</p>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">Latest from our blog</h2>
+              <p className="text-slate-500 text-lg max-w-2xl">Stay updated with industry trends, technical insights, and company news.</p>
+            </div>
+            <Link href="/blog" className="hidden md:inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors">
+              View all articles <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={post.id} data-aos="fade-up" data-aos-delay={index * 100} className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col">
+                <div className="relative h-56 overflow-hidden">
+                  <Image 
+                    src={post.img} 
+                    alt={post.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-slate-900 shadow-sm">
+                    {post.category}
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <p className="text-sm text-slate-400 font-medium mb-3">{post.date}</p>
+                  <h3 className="text-xl font-bold text-slate-900 leading-tight mb-4 group-hover:text-primary-600 transition-colors">
+                    <Link href={`/blog/${post.id}`}>
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
+                    {post.desc}
+                  </p>
+                  <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-primary-600 font-bold text-sm hover:text-primary-700 transition-colors mt-auto">
+                    Read article <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 text-center md:hidden" data-aos="fade-up">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors">
+              View all articles <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA Banner ── */}
       <section className="relative py-24 overflow-hidden">
         <Image
@@ -340,8 +405,8 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 sm:p-14 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl" data-aos="zoom-in">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to fix your TV?</h2>
-              <p className="text-slate-300 text-lg max-w-xl">Book a certified technician today. Same-day service in most Mumbai areas for just ₹250 visit fee.</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Partner with us today</h2>
+              <p className="text-slate-300 text-lg max-w-xl">Whether it's bulk DOA management, panel repairs, or sourcing high-quality speakers, Longwell Electronics is your trusted B2B partner.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
               <Link href="/book" className="flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-full transition-all shadow-lg shadow-primary-600/30 hover:-translate-y-1">
@@ -360,9 +425,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: MapPin, title: 'Our Workshop',    content: '123 Service Street, Electronics Hub,\nMumbai – 400001', href: undefined },
-              { icon: Phone,  title: 'Call / WhatsApp', content: '+91 98765 43210',    href: 'tel:9876543210',         sub: 'Mon–Sat, 9am–7pm' },
-              { icon: Mail,   title: 'Email Us',        content: 'info@tvrepair.in',   href: 'mailto:info@tvrepair.in', sub: 'Reply within 2 hours' },
+              { icon: MapPin, title: 'Head Office', content: 'C-295 Sector 10 Noida,\nGautam Buddha Nagar-201301', href: undefined },
+              { icon: Phone, title: 'Call Us', content: '+91 9811881117\n+91 9811211948', href: 'tel:9811881117', sub: 'Mon–Sat, 9am–7pm' },
+              { icon: Mail, title: 'Email Us', content: 'imrankhanik8463@gmail.com\nlongwellpanelwork@gmail.com', href: 'mailto:imrankhanik8463@gmail.com', sub: 'Fast Response' },
             ].map((item, index) => (
               <div key={item.title} data-aos="fade-up" data-aos-delay={index * 100} className="flex items-start gap-5 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary-200 transition-colors duration-300 shadow-sm hover:shadow-md">
                 <div className="h-14 w-14 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0 text-primary-600">

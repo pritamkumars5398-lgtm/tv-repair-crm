@@ -11,11 +11,11 @@ import { publicApi } from '@/lib/api/public';
 
 const products = [
   { id: '1', name: '5.1 Home Theater Speaker Set', category: 'Home Theater', desc: 'Premium 5.1 surround sound system with deep bass and room-filling audio.', specs: ['5.1 Channel', '200W Output', '40Hz–20kHz', '8Ω Impedance'], price: '₹15,000 – ₹25,000', img: 'https://images.unsplash.com/photo-1545454675-3479531426e2?w=600&q=80' },
-  { id: '2', name: '2.1 Bookshelf Speaker System',  category: 'Home Audio',   desc: 'Compact 2.1 setup perfect for living rooms. Rich, balanced sound.', specs: ['2.1 Channel', '80W Output', '60Hz–20kHz', 'Magnetic Shielded'], price: '₹6,000 – ₹12,000', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
-  { id: '3', name: 'Commercial PA Speaker',          category: 'Commercial',   desc: 'High-power PA speakers for shops, restaurants, offices and event venues.', specs: ['150W Output', 'Weatherproof', 'Wall-mount Ready', 'Single Channel'], price: '₹4,000 – ₹8,000', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80' },
-  { id: '4', name: 'Subwoofer — 12" Bass Cabinet',  category: 'Subwoofer',    desc: 'Powerful 12" subwoofer for punchy bass. Compatible with any 2.1 or 5.1 setup.', specs: ['12" Driver', '120W Output', '20Hz–200Hz', 'Line In/Out'], price: '₹5,000 – ₹9,000', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80' },
-  { id: '5', name: 'Outdoor Weatherproof Speaker',  category: 'Outdoor',      desc: 'Built for outdoor use — garden, poolside, rooftop. IP54 rated, UV resistant.', specs: ['IP54 Rated', '60W Output', 'UV Resistant', 'Swivel Mount'], price: '₹3,500 – ₹7,000', img: 'https://images.unsplash.com/photo-1533139502658-0198f920d8e7?w=600&q=80' },
-  { id: '6', name: 'Studio Monitor Speaker',         category: 'Studio',       desc: 'Flat response monitors for accurate audio production and music mixing.', specs: ['Bi-amplified', '80W Per Channel', 'Flat Response', '5" + 1" Driver'], price: '₹8,000 – ₹18,000', img: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80' },
+  { id: '2', name: '2.1 Bookshelf Speaker System', category: 'Home Audio', desc: 'Compact 2.1 setup perfect for living rooms. Rich, balanced sound.', specs: ['2.1 Channel', '80W Output', '60Hz–20kHz', 'Magnetic Shielded'], price: '₹6,000 – ₹12,000', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
+  { id: '3', name: 'Commercial PA Speaker', category: 'Commercial', desc: 'High-power PA speakers for shops, restaurants, offices and event venues.', specs: ['150W Output', 'Weatherproof', 'Wall-mount Ready', 'Single Channel'], price: '₹4,000 – ₹8,000', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80' },
+  { id: '4', name: 'Subwoofer — 12" Bass Cabinet', category: 'Subwoofer', desc: 'Powerful 12" subwoofer for punchy bass. Compatible with any 2.1 or 5.1 setup.', specs: ['12" Driver', '120W Output', '20Hz–200Hz', 'Line In/Out'], price: '₹5,000 – ₹9,000', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80' },
+  { id: '5', name: 'Outdoor Weatherproof Speaker', category: 'Outdoor', desc: 'Built for outdoor use — garden, poolside, rooftop. IP54 rated, UV resistant.', specs: ['IP54 Rated', '60W Output', 'UV Resistant', 'Swivel Mount'], price: '₹3,500 – ₹7,000', img: 'https://images.unsplash.com/photo-1533139502658-0198f920d8e7?w=600&q=80' },
+  { id: '6', name: 'Studio Monitor Speaker', category: 'Studio', desc: 'Flat response monitors for accurate audio production and music mixing.', specs: ['Bi-amplified', '80W Per Channel', 'Flat Response', '5" + 1" Driver'], price: '₹8,000 – ₹18,000', img: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80' },
 ];
 
 const categories = ['All', ...Array.from(new Set(products.map((p) => p.category)))];
@@ -57,10 +57,10 @@ export default function ProductsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/40 via-slate-950 to-slate-950" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1545454675-3479531426e2?w=1600&q=80')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute top-1/4 -right-1/4 w-[800px] h-[800px] bg-primary-600/20 rounded-full blur-[120px] pointer-events-none" />
-        
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p data-aos="fade-down" className="text-primary-400 text-sm font-bold uppercase tracking-[0.2em] mb-4">Products</p>
-          <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-tight">Speaker <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Catalog</span></h1>
+          <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-tight">Speaker <span className="text-white bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Catalog</span></h1>
           <p data-aos="fade-up" data-aos-delay="200" className="text-slate-300 text-lg max-w-2xl mx-auto font-light leading-relaxed">Custom-manufactured speakers for home, studio, and commercial use. Contact us for a personalized quote tailored to your acoustic needs.</p>
         </div>
       </section>
@@ -73,11 +73,10 @@ export default function ProductsPage() {
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
-                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm ${
-                  category === cat
+                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm ${category === cat
                     ? 'bg-primary-600 text-white shadow-primary-600/30 shadow-md'
                     : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-primary-600 hover:border-primary-200'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -87,8 +86,8 @@ export default function ProductsPage() {
           {/* Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((p, index) => (
-              <div 
-                key={p.id} 
+              <div
+                key={p.id}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
                 className="group bg-white border border-slate-100 rounded-3xl overflow-hidden hover:border-primary-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
@@ -137,7 +136,7 @@ export default function ProductsPage() {
       {/* Inquiry Modal */}
       {modal.open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div 
+          <div
             className="bg-white rounded-3xl w-full max-w-lg shadow-2xl shadow-slate-900/50 border border-slate-100 relative overflow-hidden"
             data-aos="zoom-in"
             data-aos-duration="200"
@@ -152,7 +151,7 @@ export default function ProductsPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            
+
             <div className="p-6 sm:p-8">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">

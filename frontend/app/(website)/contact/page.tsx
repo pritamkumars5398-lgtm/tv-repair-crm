@@ -27,29 +27,29 @@ export default function ContactPage() {
     }
   };
 
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
+  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '9811881117';
 
-  const contactSchema = {
+  const jsonLdSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'RepairCart',
-    url: 'https://www.repaircart.in/contact',
-    telephone: '+919876543210',
-    email: 'info@repaircart.in',
+    name: 'Longwell Electronics',
+    url: 'https://www.longwellelectronics.com/contact',
+    telephone: '+919811881117',
+    email: 'imrankhanik8463@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Service Street, Electronics Hub',
-      addressLocality: 'Mumbai',
-      addressRegion: 'Maharashtra',
-      postalCode: '400001',
+      streetAddress: 'C-295 Sector 10',
+      addressLocality: 'Noida',
+      addressRegion: 'Uttar Pradesh',
+      postalCode: '201301',
       addressCountry: 'IN',
     },
     openingHoursSpecification: [
-      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '19:00' },
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '19:00' },
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+919876543210',
+      telephone: '+919811881117',
       contactType: 'customer service',
       availableLanguage: ['en', 'hi'],
     },
@@ -57,7 +57,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }} />
       <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-32">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-primary-900/30 via-slate-950 to-slate-950" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-600/10 rounded-full blur-[100px] pointer-events-none" />
@@ -65,8 +65,8 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div className="max-w-2xl">
               <div data-aos="fade-down" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-primary-300 backdrop-blur-md shadow-lg mb-6">
-                <ShieldCheck className="h-4 w-4 text-primary-400" />
-                Fast response · Genuine parts · Doorstep service
+                <ShieldCheck className="h-4 w-4 text-white" />
+                <span className='text-white'> Fast response · Genuine parts · Doorstep service</span>
               </div>
               <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl leading-[1.05]">
                 Let’s get your device <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">fixed.</span>
@@ -184,10 +184,11 @@ export default function ContactPage() {
                         className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition-all focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-500/20 hover:bg-white appearance-none cursor-pointer"
                       >
                         <option value="">Select a service</option>
-                        <option value="TV_REPAIR">TV Repair</option>
-                        <option value="SPEAKER_REPAIR">Speaker Repair</option>
-                        <option value="HOME_THEATER">Home Theater</option>
-                        <option value="PRODUCT_INQUIRY">Product Inquiry</option>
+                        <option value="PANEL_REPAIR">LED TV Panel Repair</option>
+                        <option value="MOBILE_REPAIR">Mobile Glass/Touch Repair</option>
+                        <option value="SPEAKER_MFG">Speaker Manufacturing</option>
+                        <option value="DOA_MANAGEMENT">DOA Management</option>
+                        <option value="RECYCLING">Recycling Services</option>
                       </select>
                       {errors.serviceType && <p className="mt-1.5 text-xs font-medium text-rose-500">{errors.serviceType.message}</p>}
                     </div>
@@ -222,7 +223,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-[3rem] border border-slate-100 bg-white shadow-xl shadow-slate-200/50" data-aos="fade-left">
                 <div className="h-64 sm:h-80">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.0!2d72.8!3d18.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDU0JzAwLjAiTiA3MsKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.250486043455!2d77.3175!3d28.5885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce45f0d778d91%3A0xc3f1d3c7b64010a3!2sSector%2010%2C%20Noida%2C%20Uttar%20Pradesh%20201301!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -239,9 +240,10 @@ export default function ContactPage() {
                 <h3 className="text-2xl font-bold">Contact details</h3>
                 <div className="mt-8 space-y-5">
                   {([
-                    { icon: MapPin, label: 'Address', value: '123 Service Street, Electronics Hub, Mumbai – 400001' },
-                    { icon: Phone, label: 'Phone', value: '+91 98765 43210', href: 'tel:9876543210' },
-                    { icon: Mail, label: 'Email', value: 'info@tvrepair.in', href: 'mailto:info@tvrepair.in' },
+                    { icon: MapPin, label: 'Head Office', value: 'C-295 Sector 10 Noida, Gautam Buddha Nagar-201301' },
+                    { icon: MapPin, label: 'Branch Office', value: 'B115 Sector 5 Noida, Gautam Buddha Nagar-201301' },
+                    { icon: Phone, label: 'Phone', value: '+91 9811881117, +91 9811211948', href: 'tel:9811881117' },
+                    { icon: Mail, label: 'Email', value: 'imrankhanik8463@gmail.com', href: 'mailto:imrankhanik8463@gmail.com' },
                     { icon: Clock, label: 'Hours', value: 'Mon–Sat: 9:00 AM – 7:00 PM' },
                   ]).map((item, index) => (
                     <div key={item.label} data-aos="fade-up" data-aos-delay={200 + (index * 100)} className="flex items-start gap-4 rounded-3xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition-colors">
