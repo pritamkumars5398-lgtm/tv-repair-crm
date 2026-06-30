@@ -58,6 +58,11 @@ export interface Ticket {
   scheduledAt: string;
   createdAt: string;
   technicianName?: string;
+  technicianPhone?: string;
+  issueDescription?: string;
+  repairNotes?: string;
+  estimateAmount?: number;
+  invoiceAmount?: number;
 }
 
 export interface StatusHistoryEntry {
@@ -83,7 +88,9 @@ export interface Lead {
   serviceType?: ServiceType;
   message?: string;
   assignedTo?: string;
+  assignedToName?: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface BookingFormData {
@@ -135,6 +142,14 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
+export interface PaginatedResponse<T> {
+  items: T[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 export interface BookingResponse {
   razorpayOrderId: string;
   bookingId: string;
@@ -144,4 +159,144 @@ export interface BookingResponse {
 export interface BookingVerifyResponse {
   ticketId: string;
   success: boolean;
+}
+
+// Auth
+export interface LoginPayload {
+  phone: string;
+  otp: string;
+  role?: UserRole;
+}
+
+export interface AuthResponse {
+  user: User;
+  token: string;
+}
+
+export interface OtpResponse {
+  success: boolean;
+  message: string;
+}
+
+// Customer Portal
+export interface CustomerDashboardStats {
+  activeTickets: number;
+  completedRepairs: number;
+  pendingPayments: number;
+  totalSpent: number;
+}
+
+export interface Payment {
+  id: string;
+  ticketId: string;
+  amount: number;
+  status: PaymentStatus;
+  razorpayOrderId?: string;
+  razorpayPaymentId?: string;
+  createdAt: string;
+}
+
+export interface Invoice {
+  id: string;
+  invoiceNumber: string;
+  ticketId: string;
+  amount: number;
+  tax: number;
+  total: number;
+  status: 'DRAFT' | 'SENT' | 'PAID';
+  createdAt: string;
+  pdfUrl?: string;
+}
+
+export interface Query {
+  id: string;
+  subject: string;
+  message: string;
+  status: 'OPEN' | 'IN_PROGRESS' | 'RESOLVED';
+  replies: QueryReply[];
+  createdAt: string;
+}
+
+export interface QueryReply {
+  id: string;
+  message: string;
+  isStaff: boolean;
+  createdAt: string;
+}
+
+// Admin
+export interface AdminDashboardStats {
+  newLeadsToday: number;
+  activeTickets: number;
+  techniciansOnField: number;
+  revenueThisMonth: number;
+  pendingPayments: number;
+  completedJobsToday: number;
+}
+
+export interface RevenueDataPoint {
+  date: string;
+  revenue: number;
+}
+
+export interface LeadSourceDataPoint {
+  source: string;
+  count: number;
+}
+
+export interface Technician {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string;
+  specialization: string;
+  isActive: boolean;
+  jobsCompleted: number;
+  rating?: number;
+  createdAt: string;
+}
+
+export interface Customer {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string;
+  address?: string;
+  totalRepairs: number;
+  totalSpent: number;
+  createdAt: string;
+}
+
+export interface InventoryItem {
+  id: string;
+  name: string;
+  category: string;
+  sku: string;
+  quantity: number;
+  reorderLevel: number;
+  unitPrice: number;
+  status: 'IN_STOCK' | 'LOW_STOCK' | 'OUT_OF_STOCK';
+  updatedAt: string;
+}
+
+// Technician
+export interface TechnicianDashboardStats {
+  todayJobs: number;
+  pendingJobs: number;
+  completedToday: number;
+  rating: number;
+}
+
+export interface Job {
+  id: string;
+  ticketId: string;
+  customerName: string;
+  customerPhone: string;
+  address: string;
+  serviceType: ServiceType;
+  status: TicketStatus;
+  scheduledAt: string;
+  issueDescription?: string;
+  repairNotes?: string;
+  estimateAmount?: number;
 }

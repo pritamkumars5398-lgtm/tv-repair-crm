@@ -28,8 +28,35 @@ export default function ContactPage() {
 
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
 
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'RepairCart',
+    url: 'https://www.repaircart.in/contact',
+    telephone: '+919876543210',
+    email: 'info@repaircart.in',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '123 Service Street, Electronics Hub',
+      addressLocality: 'Mumbai',
+      addressRegion: 'Maharashtra',
+      postalCode: '400001',
+      addressCountry: 'IN',
+    },
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '19:00' },
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+919876543210',
+      contactType: 'customer service',
+      availableLanguage: ['en', 'hi'],
+    },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       {/* Hero */}
       <section className="bg-neutral-900 text-white pt-32 pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
