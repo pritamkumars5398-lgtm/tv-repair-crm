@@ -46,9 +46,35 @@ const testimonials = [
 
 const brands = ['Samsung', 'LG', 'Sony', 'Panasonic', 'Mi', 'OnePlus', 'Vu', 'Hisense', 'TCL', 'Philips'];
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'RepairCart',
+  description: 'Expert LED & Smart TV repair, screen replacement, and premium speaker manufacturing in Mumbai.',
+  url: 'https://www.repaircart.in',
+  telephone: '+919876543210',
+  email: 'info@repaircart.in',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '123 Service Street, Electronics Hub',
+    addressLocality: 'Mumbai',
+    addressRegion: 'Maharashtra',
+    postalCode: '400001',
+    addressCountry: 'IN',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 18.9, longitude: 72.8 },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '19:00' },
+  ],
+  priceRange: '₹₹',
+  image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1200&q=80',
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '4200' },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       {/* ── Hero ── */}
       <section className="relative bg-slate-950 text-white pt-32 pb-24 overflow-hidden">
         {/* Dynamic Background */}

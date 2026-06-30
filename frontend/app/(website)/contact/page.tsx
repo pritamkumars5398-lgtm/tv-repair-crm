@@ -29,8 +29,35 @@ export default function ContactPage() {
 
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
 
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'RepairCart',
+    url: 'https://www.repaircart.in/contact',
+    telephone: '+919876543210',
+    email: 'info@repaircart.in',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '123 Service Street, Electronics Hub',
+      addressLocality: 'Mumbai',
+      addressRegion: 'Maharashtra',
+      postalCode: '400001',
+      addressCountry: 'IN',
+    },
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '09:00', closes: '19:00' },
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+919876543210',
+      contactType: 'customer service',
+      availableLanguage: ['en', 'hi'],
+    },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-32">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-primary-900/30 via-slate-950 to-slate-950" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-600/10 rounded-full blur-[100px] pointer-events-none" />
