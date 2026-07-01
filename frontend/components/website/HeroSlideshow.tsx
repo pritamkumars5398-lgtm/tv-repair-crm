@@ -1,26 +1,39 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
-const images = [
-  {
-    src: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=900&q=85',
-    alt: 'Technician working on electronics repair',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=900&q=85',
-    alt: 'Smart LED TV screen calibration',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=900&q=85',
-    alt: 'Premium speakers and audio systems',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=85',
-    alt: 'Home theater surround sound installation',
-  },
-];
+import product1 from '../../assets/img/user2.png';
+import product2 from '../../assets/img/user1.png';
+import product3 from '../../assets/img/repair1.png';
+import product4 from '../../assets/img/repair2.png';
+import product5 from '../../assets/img/repair10.png';
+
+const images: {
+  src: StaticImageData;
+  alt: string;
+}[] = [
+    {
+      src: product1,
+      alt: 'LED TV Repair',
+    },
+    {
+      src: product2,
+      alt: 'Electronics Repair Lab',
+    },
+    {
+      src: product3,
+      alt: 'Motherboard Repair',
+    },
+    {
+      src: product4,
+      alt: 'LED Panel Repair',
+    },
+    {
+      src: product5,
+      alt: 'Professional Repair Center',
+    },
+  ];
 
 export function HeroSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -34,24 +47,42 @@ export function HeroSlideshow() {
   }, []);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full overflow-hidden rounded-3xl">
+
       {images.map((image, index) => (
         <div
-          key={image.src}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === activeIndex ? 'opacity-100' : 'opacity-0'
-          }`}
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === activeIndex ? 'opacity-100' : 'opacity-0'
+            }`}
         >
           <Image
             src={image.src}
             alt={image.alt}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
             priority={index === 0}
+            sizes="100vw"
+            className="object-cover"
           />
+
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/25" />
         </div>
       ))}
+
+      {/* Bottom Dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`h-3 w-3 rounded-full transition-all ${index === activeIndex
+              ? 'bg-white w-8'
+              : 'bg-white/50'
+              }`}
+          />
+        ))}
+      </div>
+
     </div>
   );
 }

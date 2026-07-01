@@ -1,110 +1,163 @@
 "use client";
 
-import { useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { Building2, Wind, ShieldCheck, Box, Settings, ArrowRight } from 'lucide-react';
+import { useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import infra1 from "../../../assets/img/Picture1.png";
+import infra2 from "../../../assets/img/Picture2.png";
+import infra3 from "../../../assets/img/Picture3.png";
+import infra4 from "../../../assets/img/Picture4.png";
+import infra5 from "../../../assets/img/Picture5.png";
+import infra6 from "../../../assets/img/Picture12.png"
+import infra7 from "../../../assets/img/Picture24.png"
+
+import {
+  Building2,
+  Wind,
+  ShieldCheck,
+  Box,
+  Settings,
+  ArrowRight,
+} from "lucide-react";
 
 const facilities = [
-  { icon: Building2, title: '20,000 Sq. Ft. Area', desc: 'Sprawling facility designed for high-volume manufacturing and repair.' },
-  { icon: Wind, title: 'Class 100K Clean Room', desc: 'Air showered and specialized environments for precise panel bonding.' },
-  { icon: Settings, title: 'Automated SOPs', desc: 'Fully automated standard operating procedures ensuring consistent high yield.' },
-  { icon: ShieldCheck, title: 'OQA Area', desc: 'Dedicated Outgoing Quality Assurance zone for 100% inspection before dispatch.' },
-  { icon: Box, title: 'Advanced Packaging', desc: 'Specialized packaging machines with shrink wrap and wooden boxes for safe logistics.' },
+  {
+    icon: Building2,
+    title: "20,000 Sq. Ft. Area",
+    desc: "Sprawling facility designed for high-volume manufacturing and repair.",
+  },
+  {
+    icon: Wind,
+    title: "Class 100K Clean Room",
+    desc: "Air showered and specialized environments for precise panel bonding.",
+  },
+  {
+    icon: Settings,
+    title: "Automated SOPs",
+    desc: "Fully automated standard operating procedures ensuring consistent high yield.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "OQA Area",
+    desc: "Dedicated Outgoing Quality Assurance zone for 100% inspection before dispatch.",
+  },
+  {
+    icon: Box,
+    title: "Advanced Packaging",
+    desc: "Specialized packaging machines with shrink wrap and wooden boxes.",
+  },
 ];
 
-const images = [
-  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80',
-  'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&q=80',
-  'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80',
-  'https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=900&q=80',
-  'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80',
-  'https://images.unsplash.com/photo-1581092335878-2d9fd86aecf3?w=900&q=80',
-];
+const images = [infra1, infra2, infra3, infra4, infra5, infra6, infra7];
 
 export default function InfrastructurePageClient() {
   useEffect(() => {
-    AOS.init({ once: true, duration: 900, easing: 'ease-out-cubic', offset: 120 });
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: "ease-out-cubic",
+      offset: 100,
+    });
   }, []);
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 opacity-40 mix-blend-luminosity">
+    <div className="bg-slate-50 font-sans">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#020617] pt-28 pb-32 border-b border-slate-800">
+        <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80"
-            alt="Infrastructure facility"
+            src={infra1}
+            alt="Infrastructure"
             fill
-            className="object-cover"
             priority
+            className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-950/80 to-primary-950/50" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8 text-center sm:text-left">
-          <p data-aos="fade-right" className="text-primary-400 text-sm font-bold uppercase tracking-[0.2em] mb-4"><span className='text-white'>World Class Facility</span></p>
-          <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.05]">
-            State-of-the-art <span className="text-white bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Infrastructure.</span>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/30 via-[#020617]/90 to-[#020617]" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+          <p className="uppercase tracking-[0.2em] text-[10px] text-primary-400 font-bold mb-3">
+            <span className="text-white">World Class Facility</span>
+          </p>
+
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
+            State-of-the-art<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-cyan-300">Infrastructure</span>
           </h1>
-          <p data-aos="fade-up" data-aos-delay="200" className="mt-8 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-xl mx-auto sm:mx-0 font-light">
-            Explore our 20,000 sq. ft. workspace, equipped with Class 1000 and 10000 clean rooms, bonding machines, and a dedicated quality assurance area.
+
+          <p className="mx-auto max-w-2xl text-slate-400 text-sm font-medium">
+            Explore our 20,000 sq. ft. repair and manufacturing facility
+            equipped with advanced clean rooms, bonding machines, testing labs,
+            PCB repair stations and quality inspection systems.
           </p>
         </div>
       </section>
 
-      {/* Facilities Overview */}
-      <section className="bg-slate-50 py-24 relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Facility Highlights</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Our infrastructure is engineered for maximum yield and quality control. From initial soaking to final packaging, every step is optimized.
+      {/* Highlights */}
+      <section className="py-0 relative z-10 -mt-16 mx-4 sm:mx-auto max-w-6xl">
+        <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-8 sm:p-10">
+          <div className="text-center mb-10" data-aos="fade-up">
+            <h2 className="text-2xl font-extrabold text-slate-900">
+              Facility Highlights
+            </h2>
+            <p className="mt-1.5 text-slate-500 text-xs font-medium uppercase tracking-wider">
+              Designed for maximum productivity and quality.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {facilities.map((facility, index) => (
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {facilities.map((item, index) => (
               <div
-                key={facility.title}
+                key={index}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="bg-slate-50 rounded-xl p-5 border border-slate-100 hover:border-primary-200 hover:bg-white hover:shadow-sm transition-all group"
               >
-                <div className="h-14 w-14 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6">
-                  <facility.icon className="h-7 w-7" strokeWidth={2} />
+                <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center text-primary-600 mb-3 shadow-sm group-hover:bg-primary-50 transition-colors">
+                  <item.icon className="w-5 h-5" strokeWidth={2} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{facility.title}</h3>
-                <p className="text-slate-500 leading-relaxed">{facility.desc}</p>
+                <h3 className="font-bold text-sm text-slate-900 mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-[11px] text-slate-500 font-medium leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Image Gallery */}
-      <section className="bg-slate-950 py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-bold text-white mb-4">Inside Our Facility</h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              A glimpse into our production, repair, and testing environments.
+      {/* Gallery */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10" data-aos="fade-up">
+            <h2 className="text-2xl font-extrabold text-slate-900">
+              Inside Our Facility
+            </h2>
+            <p className="text-slate-500 text-xs font-medium uppercase tracking-wider mt-1.5">
+              Clean rooms, production, and testing environments.
             </p>
           </div>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {images.map((src, index) => (
-              <div key={index} data-aos="zoom-in" data-aos-delay={index * 100} className="relative overflow-hidden rounded-3xl group break-inside-avoid">
-                <div className="aspect-auto">
-                  <Image
-                    src={src}
-                    alt={`Facility ${index + 1}`}
-                    width={900}
-                    height={600}
-                    className="object-cover w-full h-auto group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors duration-300" />
+
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+            {images.map((img, index) => (
+              <div
+                key={index}
+                data-aos="zoom-in"
+                data-aos-delay={index * 50}
+                className="overflow-hidden rounded-xl border border-slate-200 shadow-sm group break-inside-avoid relative"
+              >
+                <Image
+                  src={img}
+                  alt={`Infrastructure ${index + 1}`}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors" />
               </div>
             ))}
           </div>
@@ -112,19 +165,30 @@ export default function InfrastructurePageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-slate-50 relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative" data-aos="zoom-in">
-          <div className="bg-white border border-slate-100 rounded-[2.5rem] p-10 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+      <section className="py-20 bg-[#020617] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-900/40 via-[#020617] to-[#020617]" />
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl" data-aos="fade-up">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Want to see it yourself?</h2>
-              <p className="text-slate-500 text-lg">Partner with us and visit our Noida facility to witness our operations.</p>
+              <h2 className="text-2xl font-extrabold text-white">
+                Visit Our Infrastructure
+              </h2>
+              <p className="text-slate-400 mt-2 text-sm font-medium max-w-md">
+                Schedule a visit to our Noida manufacturing and repair facility.
+              </p>
             </div>
-            <Link href="/contact" className="shrink-0 w-full md:w-auto text-center px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white text-base font-bold rounded-full shadow-lg shadow-primary-600/30 transition-all hover:-translate-y-1">
-              Contact Us <ArrowRight className="inline-block ml-2 h-4 w-4" />
+
+            <Link
+              href="/contact"
+              className="px-6 py-3 rounded-md bg-primary-600 text-white text-sm font-bold shadow-sm hover:bg-primary-700 transition flex items-center justify-center shrink-0 border border-transparent"
+            >
+              Contact Us
+              <ArrowRight className="inline ml-2 w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

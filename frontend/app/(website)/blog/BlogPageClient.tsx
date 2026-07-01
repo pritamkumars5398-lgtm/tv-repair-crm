@@ -13,7 +13,8 @@ const allPosts = [
     date: 'Oct 12, 2023',
     readTime: '5 min read',
     desc: 'Discover how advanced clean room environments are revolutionizing the way we bond and repair large-scale LED panels.',
-    img: 'https://images.unsplash.com/photo-1581092918056-0c4c3aebb8e9?w=800&q=80',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnmY8lAF9lm-C11DN3wBmqIoumv-si2Oor7XStvn7R_Q&s=10',
+
     featured: true
   },
   {
@@ -43,7 +44,7 @@ const allPosts = [
     date: 'Dec 10, 2023',
     readTime: '8 min read',
     desc: 'Understand the precision required for One Glass Solution (OGS) repairs, polarizers, and touch panel replacements.',
-    img: 'https://images.unsplash.com/photo-1461151304267-38535e596517?w=800&q=80',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6dy1KoXrOVNiTmQzUzNnvVSaiUf4chsEseNoOxXdgMg&s=10',
     featured: false
   },
   {
@@ -53,7 +54,7 @@ const allPosts = [
     date: 'Jan 15, 2024',
     readTime: '5 min read',
     desc: 'As audio experiences become central to home entertainment, smart tower speakers are seeing unprecedented demand.',
-    img: 'https://images.unsplash.com/photo-1545454675-3479531426e2?w=800&q=80',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmkix3fwZXIykJzSZyrvKU3_KSMCKwPsZWLwOJOpc0ow&s=10',
     featured: false
   },
   {
@@ -91,7 +92,7 @@ export default function BlogPageClient() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16" data-aos="fade-up">
             <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
-              Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Perspectives</span>
+              Insights & <span className="text-white bg-clip-text bg-gradient-to-r from-primary-400 to-orange-300">Perspectives</span>
             </h1>
             <p className="text-slate-300 text-lg max-w-2xl mx-auto font-light leading-relaxed">
               Dive into the latest industry trends, technical deep-dives, and company news from Longwell Electronics.

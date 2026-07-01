@@ -5,7 +5,7 @@ import { Search, Plus, Loader2, ChevronLeft, ChevronRight, X } from 'lucide-reac
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { adminApi } from '@/lib/api/admin';
-import type { Lead, LeadStatus, LeadSource } from '@/types';
+import type { Lead, LeadStatus, LeadSource, ServiceType } from '@/types';
 
 const STATUS_COLORS: Record<LeadStatus, string> = {
   NEW:                 'bg-blue-100 text-blue-700',
@@ -37,7 +37,7 @@ export default function AdminLeadsPage() {
   const [statusFilter, setStatusFilter] = useState('');
   const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const [newLead, setNewLead] = useState({ name: '', phone: '', email: '', source: 'WEBSITE' as LeadSource, serviceType: 'TV_REPAIR', message: '' });
+  const [newLead, setNewLead] = useState({ name: '', phone: '', email: '', source: 'WEBSITE' as LeadSource, serviceType: 'TV_REPAIR' as ServiceType, message: '' });
 
   const { data, isLoading } = useQuery({
     queryKey: ['admin-leads', search, statusFilter, page],

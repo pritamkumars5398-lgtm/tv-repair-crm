@@ -10,11 +10,11 @@ import { toast } from 'sonner';
 import { publicApi } from '@/lib/api/public';
 
 const products = [
-  { id: '1', name: '5.1 Home Theater Speaker Set', category: 'Home Theater', desc: 'Premium 5.1 surround sound system with deep bass and room-filling audio.', specs: ['5.1 Channel', '200W Output', '40Hz–20kHz', '8Ω Impedance'], price: '₹15,000 – ₹25,000', img: 'https://images.unsplash.com/photo-1545454675-3479531426e2?w=600&q=80' },
+  { id: '1', name: '5.1 Home Theater Speaker Set', category: 'Home Theater', desc: 'Premium 5.1 surround sound system with deep bass and room-filling audio.', specs: ['5.1 Channel', '200W Output', '40Hz–20kHz', '8Ω Impedance'], price: '₹15,000 – ₹25,000', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZItB6crxTQPbUbXN37VQPc-34eFRImB65itv6f1RSOA&s' },
   { id: '2', name: '2.1 Bookshelf Speaker System', category: 'Home Audio', desc: 'Compact 2.1 setup perfect for living rooms. Rich, balanced sound.', specs: ['2.1 Channel', '80W Output', '60Hz–20kHz', 'Magnetic Shielded'], price: '₹6,000 – ₹12,000', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
   { id: '3', name: 'Commercial PA Speaker', category: 'Commercial', desc: 'High-power PA speakers for shops, restaurants, offices and event venues.', specs: ['150W Output', 'Weatherproof', 'Wall-mount Ready', 'Single Channel'], price: '₹4,000 – ₹8,000', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80' },
   { id: '4', name: 'Subwoofer — 12" Bass Cabinet', category: 'Subwoofer', desc: 'Powerful 12" subwoofer for punchy bass. Compatible with any 2.1 or 5.1 setup.', specs: ['12" Driver', '120W Output', '20Hz–200Hz', 'Line In/Out'], price: '₹5,000 – ₹9,000', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80' },
-  { id: '5', name: 'Outdoor Weatherproof Speaker', category: 'Outdoor', desc: 'Built for outdoor use — garden, poolside, rooftop. IP54 rated, UV resistant.', specs: ['IP54 Rated', '60W Output', 'UV Resistant', 'Swivel Mount'], price: '₹3,500 – ₹7,000', img: 'https://images.unsplash.com/photo-1533139502658-0198f920d8e7?w=600&q=80' },
+  { id: '5', name: 'Outdoor Weatherproof Speaker', category: 'Outdoor', desc: 'Built for outdoor use — garden, poolside, rooftop. IP54 rated, UV resistant.', specs: ['IP54 Rated', '60W Output', 'UV Resistant', 'Swivel Mount'], price: '₹3,500 – ₹7,000', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM1D4O9C-KyEwAxpLSbvdcBwLRyTPzjGJhPN57Y1o__w&s=10q=80' },
   { id: '6', name: 'Studio Monitor Speaker', category: 'Studio', desc: 'Flat response monitors for accurate audio production and music mixing.', specs: ['Bi-amplified', '80W Per Channel', 'Flat Response', '5" + 1" Driver'], price: '₹8,000 – ₹18,000', img: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80' },
 ];
 
@@ -74,8 +74,8 @@ export default function ProductsPage() {
                 key={cat}
                 onClick={() => setCategory(cat)}
                 className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm ${category === cat
-                    ? 'bg-primary-600 text-white shadow-primary-600/30 shadow-md'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-primary-600 hover:border-primary-200'
+                  ? 'bg-primary-600 text-white shadow-primary-600/30 shadow-md'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-primary-600 hover:border-primary-200'
                   }`}
               >
                 {cat}

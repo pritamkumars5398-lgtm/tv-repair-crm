@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight, Activity } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/infrastructure', label: 'Infrastructure' },
   { href: '/products', label: 'Products' },
@@ -16,84 +18,123 @@ const navLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200 shadow-sm">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/85 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_4px_30px_rgba(0,0,0,0.04)] py-2.5' 
+          : 'bg-white py-4 border-b border-slate-100'
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-6">
 
-          {/* Logo — original blue on white */}
-          <Link href="/" className="shrink-0 flex items-center">
+          {/* Logo */}
+          <Link href="/" className="shrink-0 flex items-center group">
             <Image
               src="/logo.png"
-              alt="RepairCart — We Fix It Right"
-              width={140}
-              height={48}
-              className="h-10 w-auto"
+              alt="Longwell Electronics"
+              width={160}
+              height={55}
+              className="h-9 w-auto transition-transform group-hover:scale-105"
               priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-0.5 flex-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3.5 py-2 text-[13px] font-medium text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded transition-all duration-150"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 flex-1 justify-center">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3.5 py-2 text-[12px] xl:text-[13px] font-bold rounded-full transition-all duration-200 ${
+                    isActive 
+                      ? 'bg-primary-50 text-primary-700' 
+                      : 'text-slate-600 hover:text-primary-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Desktop right */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Desktop right buttons */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <Link
               href="/track"
-              className="px-4 py-1.5 text-[13px] font-medium text-neutral-600 hover:text-primary-600 border border-neutral-300 hover:border-primary-400 rounded transition-all"
+              className="flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold text-slate-700 bg-white border border-slate-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 rounded-full transition-all shadow-sm group"
             >
-              Track Repair
+              <Activity className="w-4 h-4 text-primary-500 group-hover:animate-pulse" />
+              Track Status
             </Link>
             <Link
               href="/book"
-              className="px-4 py-1.5 text-[13px] font-semibold text-white bg-primary-600 hover:bg-primary-500 rounded transition-all"
+              className="flex items-center gap-1.5 px-6 py-2.5 text-[13px] font-bold text-white bg-primary-600 hover:bg-primary-700 rounded-full transition-all shadow-[0_0_15px_rgba(37,99,235,0.25)] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:-translate-y-0.5"
             >
-              Book Now
+              Book Repair <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-1.5 rounded text-neutral-500 hover:text-primary-600 hover:bg-primary-50 transition-all"
+            className="lg:hidden p-2 rounded-xl text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition-all border border-transparent hover:border-primary-100"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-neutral-200 bg-white">
-          <div className="px-4 py-3 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 text-sm text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded transition-all"
+        <div className="lg:hidden absolute top-full left-0 right-0 border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-2xl">
+          <div className="px-4 py-6 space-y-2 max-h-[85vh] overflow-y-auto">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-4 py-3 text-sm font-bold rounded-xl transition-all ${
+                    isActive
+                      ? 'bg-primary-50 text-primary-700 border border-primary-100'
+                      : 'text-slate-600 hover:text-primary-600 hover:bg-slate-50 border border-transparent'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            <div className="pt-6 flex flex-col gap-3 border-t border-slate-100 mt-4">
+              <Link 
+                href="/track" 
+                className="flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-primary-600 rounded-xl transition-all shadow-sm" 
                 onClick={() => setIsOpen(false)}
               >
-                {link.label}
+                <Activity className="w-4 h-4 text-primary-500" /> Track Repair
               </Link>
-            ))}
-            <div className="pt-2 flex flex-col gap-2 border-t border-neutral-200 mt-2">
-              <Link href="/track" className="block px-3 py-2 text-sm text-center text-neutral-600 border border-neutral-300 rounded" onClick={() => setIsOpen(false)}>
-                Track Repair
-              </Link>
-              <Link href="/book" className="block px-3 py-2 text-sm font-semibold text-center text-white bg-primary-600 rounded" onClick={() => setIsOpen(false)}>
-                Book Now
+              <Link 
+                href="/book" 
+                className="flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-bold text-white bg-primary-600 hover:bg-primary-700 rounded-xl transition-all shadow-[0_0_15px_rgba(37,99,235,0.25)]" 
+                onClick={() => setIsOpen(false)}
+              >
+                Book a Repair <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
