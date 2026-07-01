@@ -206,7 +206,7 @@ export default function AboutPageClient() {
                 </span>
               </div>
 
-              <p className="text-lg font-semibold leading-8 text-slate-900">
+              <p className="text-lg font-semibold leading-8 text-slate-800">
                 To become the leading electronics repair company by delivering
                 reliable, high-quality and customer-focused repair solutions.
               </p>
