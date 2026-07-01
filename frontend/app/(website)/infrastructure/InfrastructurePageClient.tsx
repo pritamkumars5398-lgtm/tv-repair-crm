@@ -13,6 +13,12 @@ import infra4 from "../../../assets/img/Picture4.png";
 import infra5 from "../../../assets/img/Picture5.png";
 import infra6 from "../../../assets/img/Picture12.png"
 import infra7 from "../../../assets/img/Picture24.png"
+import infra8 from "../../../assets/img/Picture6.png"
+import infra9 from "../../../assets/img/Picture7.png"
+import infra10 from "../../../assets/img/Picture8.png"
+import infra11 from "../../../assets/img/Picture9.png"
+import infra12 from "../../../assets/img/Picture24.png"
+
 
 import {
   Building2,
@@ -51,7 +57,7 @@ const facilities = [
   },
 ];
 
-const images = [infra1, infra2, infra3, infra4, infra5, infra6, infra7];
+const images = [infra1, infra2, infra3, infra4, infra5, infra6, infra7, infra11, infra10, infra8, infra9, infra12];
 
 export default function InfrastructurePageClient() {
   useEffect(() => {
