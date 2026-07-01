@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { TrendingUp } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, AreaChart, Area } from 'recharts';
 import { adminApi } from '@/lib/api/admin';
 import type { RevenueDataPoint } from '@/types';
 
@@ -29,37 +30,48 @@ export default function AdminReportsPage() {
   });
 
   return (
-    <div className="space-y-6 max-w-6xl">
-      <div>
-        <h1 className="text-xl font-bold text-neutral-900">Reports</h1>
-        <p className="text-sm text-neutral-500">Business analytics and performance insights.</p>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-7xl mx-auto">
+      
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl shadow-lg shadow-cyan-500/20 text-white">
+            <TrendingUp className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Business Reports</h1>
+            <p className="text-sm text-slate-500 font-medium">Business analytics and performance insights</p>
+          </div>
+        </div>
       </div>
 
       {/* Date range */}
-      <div className="flex flex-wrap items-center gap-3 bg-white rounded-xl border border-neutral-200 shadow-card p-4">
-        <p className="text-sm font-medium text-neutral-600">Date Range:</p>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-4 bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5">
+        <p className="text-sm font-bold text-slate-700">Date Range:</p>
+        <div className="flex items-center gap-3">
           <input type="date" value={from} onChange={(e) => setFrom(e.target.value)}
-            className="px-3 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
-          <span className="text-neutral-400 text-sm">to</span>
+            className="px-4 py-2 bg-slate-50 border-none rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-cyan-500/20 text-slate-700" />
+          <span className="text-slate-400 font-medium text-sm">to</span>
           <input type="date" value={to} onChange={(e) => setTo(e.target.value)}
-            className="px-3 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+            className="px-4 py-2 bg-slate-50 border-none rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-cyan-500/20 text-slate-700" />
         </div>
-        {[
-          { label: '7d', days: 7 }, { label: '30d', days: 30 }, { label: '90d', days: 90 },
-        ].map((p) => (
-          <button key={p.label} onClick={() => { setFrom(toISO(new Date(Date.now() - p.days * 86400000))); setTo(toISO(new Date())); }}
-            className="px-3 py-1.5 text-xs font-medium border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors">
-            Last {p.label}
-          </button>
-        ))}
+        <div className="flex gap-2 border-l border-slate-100 pl-4 ml-2">
+          {[
+            { label: '7d', days: 7 }, { label: '30d', days: 30 }, { label: '90d', days: 90 },
+          ].map((p) => (
+            <button key={p.label} onClick={() => { setFrom(toISO(new Date(Date.now() - p.days * 86400000))); setTo(toISO(new Date())); }}
+              className="px-4 py-2 text-xs font-bold border-none bg-slate-100 text-slate-600 rounded-xl hover:bg-cyan-50 hover:text-cyan-700 transition-colors">
+              Last {p.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Tab navigation */}
-      <div className="flex gap-1 bg-neutral-100 rounded-xl p-1 w-fit">
+      <div className="flex gap-2 bg-white rounded-2xl p-1.5 w-fit border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         {TABS.map((t) => (
           <button key={t} onClick={() => setTab(t)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${tab === t ? 'bg-white text-neutral-900 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'}`}>
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${tab === t ? 'bg-gradient-to-r from-primary-600 to-cyan-600 text-white shadow-md shadow-cyan-500/20' : 'bg-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'}`}>
             {t}
           </button>
         ))}
@@ -67,33 +79,44 @@ export default function AdminReportsPage() {
 
       {/* Revenue tab */}
       {tab === 'Revenue' && (
-        <div className="space-y-5">
-          <div className="bg-white rounded-xl border border-neutral-200 shadow-card p-5">
-            <h2 className="font-semibold text-neutral-800 mb-4">Daily Revenue</h2>
+        <div className="space-y-6 animate-in fade-in duration-500">
+          <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6">
+            <h2 className="text-lg font-bold text-slate-800 mb-6">Daily Revenue Growth</h2>
             {revenue?.length ? (
-              <ResponsiveContainer width="100%" height={280}>
-                <LineChart data={revenue}>
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }}
-                    tickFormatter={(v: string) => new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} />
-                  <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `₹${(v / 1000).toFixed(0)}k`} />
-                  <Tooltip formatter={(v: number) => [`₹${v.toLocaleString('en-IN')}`, 'Revenue']} />
-                  <Line type="monotone" dataKey="revenue" stroke="#2563eb" strokeWidth={2} dot={{ r: 3 }} />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="h-[320px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={revenue} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#64748b', fontWeight: 600 }} tickLine={false} axisLine={false}
+                      tickFormatter={(v: string) => new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} />
+                    <YAxis tick={{ fontSize: 11, fill: '#64748b', fontWeight: 600 }} tickLine={false} axisLine={false} tickFormatter={(v: number) => `₹${(v / 1000).toFixed(0)}k`} />
+                    <Tooltip 
+                      contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.1)' }}
+                      formatter={(v: number) => [`₹${v.toLocaleString('en-IN')}`, 'Revenue']} 
+                    />
+                    <Area type="monotone" dataKey="revenue" stroke="#0ea5e9" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
             ) : (
-              <div className="h-[280px] flex items-center justify-center text-sm text-neutral-400">No revenue data for selected range</div>
+              <div className="h-[320px] flex items-center justify-center text-sm font-medium text-slate-400 bg-slate-50/50 rounded-2xl border border-dashed border-slate-200">No revenue data available for selected range</div>
             )}
           </div>
           {revenue?.length ? (
-            <div className="grid sm:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-3 gap-6">
               {[
                 { label: 'Total Revenue', value: `₹${(revenue as RevenueDataPoint[]).reduce((s, d) => s + d.revenue, 0).toLocaleString('en-IN')}` },
                 { label: 'Daily Average', value: `₹${Math.round((revenue as RevenueDataPoint[]).reduce((s, d) => s + d.revenue, 0) / (revenue as RevenueDataPoint[]).length || 0).toLocaleString('en-IN')}` },
                 { label: 'Best Day', value: `₹${Math.max(...(revenue as RevenueDataPoint[]).map((d) => d.revenue)).toLocaleString('en-IN')}` },
               ].map((stat) => (
-                <div key={stat.label} className="bg-white rounded-xl border border-neutral-200 shadow-card p-4">
-                  <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">{stat.label}</p>
-                  <p className="text-2xl font-bold text-neutral-900">{stat.value}</p>
+                <div key={stat.label} className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 hover:shadow-[0_8px_30px_rgb(6,182,212,0.1)] transition-shadow">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{stat.label}</p>
+                  <p className="text-3xl font-black text-slate-800">{stat.value}</p>
                 </div>
               ))}
             </div>
@@ -103,28 +126,30 @@ export default function AdminReportsPage() {
 
       {/* Leads tab */}
       {tab === 'Leads' && (
-        <div className="bg-white rounded-xl border border-neutral-200 shadow-card p-5">
-          <h2 className="font-semibold text-neutral-800 mb-4">Leads by Source</h2>
+        <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 animate-in fade-in duration-500">
+          <h2 className="text-lg font-bold text-slate-800 mb-6">Leads by Source</h2>
           {leadSources?.length ? (
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={leadSources}>
-                <XAxis dataKey="source" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
-                <Tooltip />
-                <Bar dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="h-[320px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={leadSources} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <XAxis dataKey="source" tick={{ fontSize: 11, fill: '#64748b', fontWeight: 600 }} tickLine={false} axisLine={false} />
+                  <YAxis tick={{ fontSize: 11, fill: '#64748b', fontWeight: 600 }} tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.1)' }} cursor={{ fill: '#f1f5f9' }} />
+                  <Bar dataKey="count" fill="#0ea5e9" radius={[6, 6, 6, 6]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           ) : (
-            <div className="h-[280px] flex items-center justify-center text-sm text-neutral-400">No lead data available</div>
+            <div className="h-[320px] flex items-center justify-center text-sm font-medium text-slate-400 bg-slate-50/50 rounded-2xl border border-dashed border-slate-200">No lead data available</div>
           )}
         </div>
       )}
 
       {/* Technicians tab */}
       {tab === 'Technicians' && (
-        <div className="bg-white rounded-xl border border-neutral-200 shadow-card p-5">
-          <h2 className="font-semibold text-neutral-800 mb-2">Technician Performance</h2>
-          <p className="text-sm text-neutral-400">Coming soon — connect to reports API endpoint.</p>
+        <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 text-center animate-in fade-in duration-500">
+          <h2 className="text-xl font-bold text-slate-800 mb-3">Technician Performance</h2>
+          <p className="text-sm font-medium text-slate-500">Coming soon — advanced technician analytics and performance metrics.</p>
         </div>
       )}
     </div>

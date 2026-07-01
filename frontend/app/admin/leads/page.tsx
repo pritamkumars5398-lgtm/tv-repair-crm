@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Plus, Loader2, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Search, Plus, Loader2, ChevronLeft, ChevronRight, X, Users } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { adminApi } from '@/lib/api/admin';
@@ -69,72 +69,81 @@ export default function AdminLeadsPage() {
   const totalPages = data?.totalPages ?? 1;
 
   return (
-    <div className="space-y-5 max-w-7xl">
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
-          <h1 className="text-xl font-bold text-neutral-900">Leads</h1>
-          <p className="text-sm text-neutral-500">{total} total leads</p>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-7xl mx-auto">
+      
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl shadow-lg shadow-cyan-500/20 text-white">
+            <Users className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Leads Management</h1>
+            <p className="text-sm text-slate-500 font-medium">{total} active leads in pipeline</p>
+          </div>
         </div>
         <button onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
-          <Plus className="h-4 w-4" /> Add Lead
+          className="flex items-center gap-2 bg-gradient-to-r from-primary-600 to-cyan-600 hover:from-primary-500 hover:to-cyan-500 text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-lg shadow-cyan-500/25 transition-all">
+          <Plus className="h-5 w-5" /> Add New Lead
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" />
-          <input type="text" placeholder="Search name or phone..." value={search}
+      <div className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+          <input type="text" placeholder="Search by name or phone number..." value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="w-full pl-9 pr-4 py-2.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+            className="w-full pl-11 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium text-slate-700 placeholder:text-slate-400" />
         </div>
         <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
-          className="px-3 py-2.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white">
+          className="px-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium text-slate-700 w-full sm:w-64 appearance-none cursor-pointer">
           <option value="">All Statuses</option>
           {STATUSES.map((s) => <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>)}
         </select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-neutral-200 shadow-card overflow-hidden">
+      {/* Table Card */}
+      <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-neutral-50 border-b border-neutral-100 text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                <th className="px-4 py-3 text-left">Customer</th>
-                <th className="px-4 py-3 text-left">Source</th>
-                <th className="px-4 py-3 text-left">Service</th>
-                <th className="px-4 py-3 text-left">Status</th>
-                <th className="px-4 py-3 text-left">Created</th>
-                <th className="px-4 py-3 text-left">Actions</th>
+              <tr className="bg-slate-50/50 border-b border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left rounded-tl-3xl">Customer Info</th>
+                <th className="px-6 py-4 text-left">Source</th>
+                <th className="px-6 py-4 text-left">Service Type</th>
+                <th className="px-6 py-4 text-left">Current Status</th>
+                <th className="px-6 py-4 text-left">Date Added</th>
+                <th className="px-6 py-4 text-left rounded-tr-3xl">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-50">
+            <tbody className="divide-y divide-slate-50">
               {isLoading ? (
-                <tr><td colSpan={6} className="py-12 text-center"><Loader2 className="h-6 w-6 animate-spin text-primary-600 mx-auto" /></td></tr>
+                <tr><td colSpan={6} className="py-20 text-center"><Loader2 className="h-8 w-8 animate-spin text-cyan-500 mx-auto" /></td></tr>
               ) : leads.length === 0 ? (
-                <tr><td colSpan={6} className="py-12 text-center text-neutral-400 text-sm">No leads found</td></tr>
+                <tr><td colSpan={6} className="py-20 text-center text-slate-400 font-medium">No leads found matching your criteria.</td></tr>
               ) : leads.map((lead) => (
-                <tr key={lead.id} className="hover:bg-neutral-50 transition-colors">
-                  <td className="px-4 py-3">
-                    <p className="font-medium text-neutral-800">{lead.name}</p>
-                    <p className="text-xs text-neutral-400">{lead.phone}</p>
+                <tr key={lead.id} className="hover:bg-slate-50/80 transition-colors group">
+                  <td className="px-6 py-4">
+                    <p className="font-bold text-slate-800">{lead.name}</p>
+                    <p className="text-xs font-medium text-slate-500 mt-0.5">{lead.phone}</p>
                   </td>
-                  <td className="px-4 py-3">
-                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${SOURCE_COLORS[lead.source]}`}>{lead.source}</span>
+                  <td className="px-6 py-4">
+                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${SOURCE_COLORS[lead.source]}`}>{lead.source}</span>
                   </td>
-                  <td className="px-4 py-3 text-neutral-600">{lead.serviceType?.replace(/_/g, ' ') ?? '—'}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-6 py-4 font-medium text-slate-600">{lead.serviceType?.replace(/_/g, ' ') ?? '—'}</td>
+                  <td className="px-6 py-4">
                     <select value={lead.status}
                       onChange={(e) => updateMutation.mutate({ id: lead.id, data: { status: e.target.value as LeadStatus } })}
-                      className={`text-xs font-medium px-2 py-0.5 rounded-full border-0 cursor-pointer focus:ring-1 focus:ring-primary-400 ${STATUS_COLORS[lead.status]}`}>
+                      className={`text-xs font-bold px-3 py-1 rounded-full border-none cursor-pointer focus:ring-2 focus:ring-cyan-500/20 appearance-none text-center ${STATUS_COLORS[lead.status]}`}>
                       {STATUSES.map((s) => <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>)}
                     </select>
                   </td>
-                  <td className="px-4 py-3 text-neutral-500 text-xs">{new Date(lead.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
-                  <td className="px-4 py-3">
-                    <a href={`tel:${lead.phone}`} className="text-xs text-primary-600 hover:underline">Call</a>
+                  <td className="px-6 py-4 text-slate-500 text-xs font-medium">{new Date(lead.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                  <td className="px-6 py-4">
+                    <a href={`tel:${lead.phone}`} className="inline-flex items-center justify-center px-4 py-2 bg-slate-100 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 text-xs font-bold rounded-xl transition-colors">
+                      Call Now
+                    </a>
                   </td>
                 </tr>
               ))}
@@ -144,16 +153,16 @@ export default function AdminLeadsPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-100">
-            <p className="text-xs text-neutral-500">Page {page} of {totalPages}</p>
-            <div className="flex gap-1.5">
+          <div className="flex items-center justify-between px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+            <p className="text-sm font-medium text-slate-500">Showing page <span className="font-bold text-slate-700">{page}</span> of {totalPages}</p>
+            <div className="flex gap-2">
               <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}
-                className="p-1.5 rounded border border-neutral-200 hover:bg-neutral-50 disabled:opacity-40 transition-colors">
-                <ChevronLeft className="h-4 w-4" />
+                className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 transition-all shadow-sm">
+                <ChevronLeft className="h-5 w-5 text-slate-600" />
               </button>
               <button onClick={() => setPage((p) => p + 1)} disabled={page === totalPages}
-                className="p-1.5 rounded border border-neutral-200 hover:bg-neutral-50 disabled:opacity-40 transition-colors">
-                <ChevronRight className="h-4 w-4" />
+                className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 transition-all shadow-sm">
+                <ChevronRight className="h-5 w-5 text-slate-600" />
               </button>
             </div>
           </div>
@@ -162,41 +171,45 @@ export default function AdminLeadsPage() {
 
       {/* Add Lead Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="font-bold text-neutral-900">Add New Lead</h2>
-              <button onClick={() => setShowModal(false)} className="p-1.5 rounded-lg hover:bg-neutral-100 text-neutral-500">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-6 border-b border-slate-100">
+              <h2 className="text-xl font-bold text-slate-800">Add New Lead</h2>
+              <button onClick={() => setShowModal(false)} className="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-colors">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            {(['name','phone','email'] as const).map((field) => (
-              <div key={field}>
-                <label className="block text-sm font-medium text-neutral-700 mb-1 capitalize">{field} {field === 'email' && <span className="text-neutral-400">(optional)</span>}</label>
-                <input type={field === 'email' ? 'email' : 'text'} value={newLead[field]}
-                  onChange={(e) => setNewLead((l) => ({ ...l, [field]: e.target.value }))}
-                  className="w-full px-3 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+            <div className="p-6 space-y-5">
+              {(['name','phone','email'] as const).map((field) => (
+                <div key={field}>
+                  <label className="block text-sm font-bold text-slate-700 mb-1.5 capitalize">{field} {field === 'email' && <span className="text-slate-400 font-medium">(optional)</span>}</label>
+                  <input type={field === 'email' ? 'email' : 'text'} value={newLead[field]}
+                    onChange={(e) => setNewLead((l) => ({ ...l, [field]: e.target.value }))}
+                    className="w-full px-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium" />
+                </div>
+              ))}
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1.5">Source</label>
+                <select value={newLead.source} onChange={(e) => setNewLead((l) => ({ ...l, source: e.target.value as LeadSource }))}
+                  className="w-full px-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium">
+                  {(['WEBSITE','WHATSAPP','PHONE_CALL','FACEBOOK','GOOGLE','REFERRAL'] as LeadSource[]).map((s) =>
+                    <option key={s} value={s}>{s.replace(/_/g,' ')}</option>)}
+                </select>
               </div>
-            ))}
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Source</label>
-              <select value={newLead.source} onChange={(e) => setNewLead((l) => ({ ...l, source: e.target.value as LeadSource }))}
-                className="w-full px-3 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white">
-                {(['WEBSITE','WHATSAPP','PHONE_CALL','FACEBOOK','GOOGLE','REFERRAL'] as LeadSource[]).map((s) =>
-                  <option key={s} value={s}>{s.replace(/_/g,' ')}</option>)}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Notes</label>
-              <textarea rows={2} value={newLead.message} onChange={(e) => setNewLead((l) => ({ ...l, message: e.target.value }))}
-                className="w-full px-3 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none" />
-            </div>
-            <div className="flex gap-2 pt-1">
-              <button onClick={() => createMutation.mutate()} disabled={createMutation.isPending || !newLead.name || !newLead.phone}
-                className="flex-1 flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold py-2.5 rounded-lg transition-colors disabled:opacity-60">
-                {createMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Create Lead'}
-              </button>
-              <button onClick={() => setShowModal(false)} className="px-4 py-2 text-sm text-neutral-500 hover:text-neutral-700">Cancel</button>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1.5">Notes</label>
+                <textarea rows={2} value={newLead.message} onChange={(e) => setNewLead((l) => ({ ...l, message: e.target.value }))}
+                  className="w-full px-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium resize-none" />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button onClick={() => setShowModal(false)} className="px-5 py-3 text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">
+                  Cancel
+                </button>
+                <button onClick={() => createMutation.mutate()} disabled={createMutation.isPending || !newLead.name || !newLead.phone}
+                  className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-primary-600 to-cyan-600 hover:from-primary-500 hover:to-cyan-500 text-white text-sm font-bold py-3 rounded-xl shadow-lg shadow-cyan-500/20 transition-all disabled:opacity-60">
+                  {createMutation.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Create Lead'}
+                </button>
+              </div>
             </div>
           </div>
         </div>

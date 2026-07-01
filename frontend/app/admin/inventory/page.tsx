@@ -40,75 +40,92 @@ export default function AdminInventoryPage() {
   const lowStockCount = items.filter((i) => i.status !== 'IN_STOCK').length;
 
   return (
-    <div className="space-y-5 max-w-6xl">
-      <div>
-        <h1 className="text-xl font-bold text-neutral-900">Inventory</h1>
-        <p className="text-sm text-neutral-500">{data?.total ?? 0} items tracked</p>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-7xl mx-auto">
+      
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl shadow-lg shadow-cyan-500/20 text-white">
+            <Package className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Inventory</h1>
+            <p className="text-sm text-slate-500 font-medium">{data?.total ?? 0} items currently tracked</p>
+          </div>
+        </div>
       </div>
 
       {lowStockCount > 0 && (
-        <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-          <AlertTriangle className="h-5 w-5 text-red-500 shrink-0" />
-          <p className="text-sm text-red-700 font-medium">
-            {lowStockCount} item{lowStockCount > 1 ? 's' : ''} below reorder level — immediate action required.
+        <div className="flex items-center gap-4 bg-gradient-to-r from-red-50 to-orange-50 border border-red-100 rounded-2xl px-5 py-4 shadow-sm animate-in zoom-in-95 duration-500">
+          <div className="p-2 bg-red-100 text-red-600 rounded-xl">
+            <AlertTriangle className="h-5 w-5 shrink-0" />
+          </div>
+          <p className="text-sm text-red-800 font-bold">
+            {lowStockCount} item{lowStockCount > 1 ? 's are' : ' is'} below reorder level — immediate action required.
           </p>
         </div>
       )}
 
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" />
-        <input type="text" placeholder="Search parts..." value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+          <input type="text" placeholder="Search for parts..." value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-11 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium text-slate-700 placeholder:text-slate-400" />
+        </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-neutral-200 shadow-card overflow-hidden">
+      {/* Table Card */}
+      <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-neutral-50 border-b border-neutral-100 text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                <th className="px-4 py-3 text-left">Part / Item</th>
-                <th className="px-4 py-3 text-left">SKU</th>
-                <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-left">Qty</th>
-                <th className="px-4 py-3 text-left">Reorder At</th>
-                <th className="px-4 py-3 text-left">Unit Price</th>
-                <th className="px-4 py-3 text-left">Status</th>
-                <th className="px-4 py-3 text-left">Actions</th>
+              <tr className="bg-slate-50/50 border-b border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left rounded-tl-3xl">Part / Item</th>
+                <th className="px-6 py-4 text-left">SKU</th>
+                <th className="px-6 py-4 text-left">Category</th>
+                <th className="px-6 py-4 text-left">Qty</th>
+                <th className="px-6 py-4 text-left">Reorder At</th>
+                <th className="px-6 py-4 text-left">Unit Price</th>
+                <th className="px-6 py-4 text-left">Status</th>
+                <th className="px-6 py-4 text-left rounded-tr-3xl">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-50">
+            <tbody className="divide-y divide-slate-50">
               {isLoading ? (
-                <tr><td colSpan={8} className="py-12 text-center"><Loader2 className="h-6 w-6 animate-spin text-primary-600 mx-auto" /></td></tr>
+                <tr><td colSpan={8} className="py-20 text-center"><Loader2 className="h-8 w-8 animate-spin text-cyan-500 mx-auto" /></td></tr>
               ) : items.length === 0 ? (
-                <tr><td colSpan={8} className="py-12 text-center">
-                  <Package className="h-10 w-10 text-neutral-200 mx-auto mb-2" />
-                  <p className="text-neutral-400">No items found</p>
+                <tr><td colSpan={8} className="py-20 text-center">
+                  <Package className="h-12 w-12 text-slate-200 mx-auto mb-3" />
+                  <p className="text-slate-400 font-medium">No items found matching your criteria.</p>
                 </td></tr>
               ) : items.map((item) => (
-                <tr key={item.id} className={`hover:bg-neutral-50 transition-colors ${item.status !== 'IN_STOCK' ? 'bg-red-50/30' : ''}`}>
-                  <td className="px-4 py-3 font-medium text-neutral-800">{item.name}</td>
-                  <td className="px-4 py-3 font-mono text-xs text-neutral-500">{item.sku}</td>
-                  <td className="px-4 py-3 text-neutral-600">{item.category}</td>
-                  <td className="px-4 py-3 font-bold text-neutral-900">{item.quantity}</td>
-                  <td className="px-4 py-3 text-neutral-500">{item.reorderLevel}</td>
-                  <td className="px-4 py-3 text-neutral-700">₹{item.unitPrice.toLocaleString('en-IN')}</td>
-                  <td className="px-4 py-3">
-                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${STATUS_CONFIG[item.status].color}`}>
+                <tr key={item.id} className={`hover:bg-slate-50/80 transition-colors group ${item.status !== 'IN_STOCK' ? 'bg-red-50/20 hover:bg-red-50/40' : ''}`}>
+                  <td className="px-6 py-4 font-bold text-slate-800">{item.name}</td>
+                  <td className="px-6 py-4">
+                    <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-md">{item.sku}</span>
+                  </td>
+                  <td className="px-6 py-4 font-medium text-slate-600">{item.category}</td>
+                  <td className="px-6 py-4 font-black text-slate-900 text-lg">{item.quantity}</td>
+                  <td className="px-6 py-4 text-slate-500 font-medium">{item.reorderLevel}</td>
+                  <td className="px-6 py-4 font-bold text-emerald-600">₹{item.unitPrice.toLocaleString('en-IN')}</td>
+                  <td className="px-6 py-4">
+                    <span className={`text-[10px] uppercase tracking-wider font-black px-3 py-1 rounded-full ${STATUS_CONFIG[item.status].color}`}>
                       {STATUS_CONFIG[item.status].label}
                     </span>
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-1.5">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => { setAdjusting({ id: item.id, type: 'IN' }); setQty(''); }}
-                        className="p-1 rounded bg-green-50 text-green-600 hover:bg-green-100 transition-colors" title="Stock In">
-                        <Plus className="h-3.5 w-3.5" />
+                        className="p-2 rounded-xl bg-emerald-50 text-emerald-600 hover:bg-emerald-100 hover:scale-105 transition-all" title="Stock In">
+                        <Plus className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => { setAdjusting({ id: item.id, type: 'OUT' }); setQty(''); }}
-                        className="p-1 rounded bg-red-50 text-red-500 hover:bg-red-100 transition-colors" title="Stock Out">
-                        <Minus className="h-3.5 w-3.5" />
+                        className="p-2 rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 hover:scale-105 transition-all" title="Stock Out">
+                        <Minus className="h-4 w-4" />
                       </button>
                     </div>
                   </td>
@@ -121,23 +138,23 @@ export default function AdminInventoryPage() {
 
       {/* Stock adjustment inline modal */}
       {adjusting && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 space-y-4">
-            <h2 className="font-bold text-neutral-900">Stock {adjusting.type === 'IN' ? 'In' : 'Out'}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200 p-6 space-y-5">
+            <h2 className="text-xl font-bold text-slate-800">Stock {adjusting.type === 'IN' ? 'In' : 'Out'}</h2>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Quantity</label>
+              <label className="block text-sm font-bold text-slate-700 mb-1.5">Quantity</label>
               <input type="number" min="1" value={qty} onChange={(e) => setQty(e.target.value)}
                 placeholder="Enter quantity"
-                className="w-full px-3 py-2.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                className="w-full px-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium text-slate-800" />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-3 pt-2">
+              <button onClick={() => setAdjusting(null)} className="px-5 py-3 text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">Cancel</button>
               <button
                 onClick={() => stockMutation.mutate({ id: adjusting.id, type: adjusting.type, quantity: parseInt(qty) })}
                 disabled={!qty || stockMutation.isPending}
-                className={`flex-1 flex items-center justify-center gap-2 text-white text-sm font-semibold py-2.5 rounded-lg disabled:opacity-60 transition-colors ${adjusting.type === 'IN' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-500 hover:bg-red-600'}`}>
-                {stockMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : `Confirm Stock ${adjusting.type}`}
+                className={`flex-1 flex items-center justify-center gap-2 text-white text-sm font-bold py-3 rounded-xl disabled:opacity-60 transition-all shadow-lg ${adjusting.type === 'IN' ? 'bg-gradient-to-r from-emerald-500 to-teal-500 shadow-emerald-500/20' : 'bg-gradient-to-r from-rose-500 to-red-500 shadow-rose-500/20'}`}>
+                {stockMutation.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : `Confirm ${adjusting.type}`}
               </button>
-              <button onClick={() => setAdjusting(null)} className="px-4 py-2 text-sm text-neutral-500 hover:text-neutral-700">Cancel</button>
             </div>
           </div>
         </div>

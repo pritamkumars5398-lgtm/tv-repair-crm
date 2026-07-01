@@ -19,68 +19,91 @@ export default function AdminCustomersPage() {
   const totalPages = data?.totalPages ?? 1;
 
   return (
-    <div className="space-y-5 max-w-6xl">
-      <div>
-        <h1 className="text-xl font-bold text-neutral-900">Customers</h1>
-        <p className="text-sm text-neutral-500">{data?.total ?? 0} registered customers</p>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-7xl mx-auto">
+      
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl shadow-lg shadow-cyan-500/20 text-white">
+            <UserCheck className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Customers</h1>
+            <p className="text-sm text-slate-500 font-medium">{data?.total ?? 0} registered customers</p>
+          </div>
+        </div>
       </div>
 
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" />
-        <input type="text" placeholder="Search name or phone..." value={search}
-          onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-          className="w-full pl-9 pr-4 py-2.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+          <input type="text" placeholder="Search by customer name or phone number..." value={search}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+            className="w-full pl-11 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 font-medium text-slate-700 placeholder:text-slate-400" />
+        </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-neutral-200 shadow-card overflow-hidden">
+      {/* Table Card */}
+      <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-neutral-50 border-b border-neutral-100 text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                <th className="px-4 py-3 text-left">Customer</th>
-                <th className="px-4 py-3 text-left">Phone</th>
-                <th className="px-4 py-3 text-left">Email</th>
-                <th className="px-4 py-3 text-left">Total Repairs</th>
-                <th className="px-4 py-3 text-left">Total Spent</th>
-                <th className="px-4 py-3 text-left">Joined</th>
+              <tr className="bg-slate-50/50 border-b border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left rounded-tl-3xl">Customer Profile</th>
+                <th className="px-6 py-4 text-left">Phone</th>
+                <th className="px-6 py-4 text-left">Email</th>
+                <th className="px-6 py-4 text-left">Total Repairs</th>
+                <th className="px-6 py-4 text-left">Total Spent</th>
+                <th className="px-6 py-4 text-left rounded-tr-3xl">Joined</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-50">
+            <tbody className="divide-y divide-slate-50">
               {isLoading ? (
-                <tr><td colSpan={6} className="py-12 text-center"><Loader2 className="h-6 w-6 animate-spin text-primary-600 mx-auto" /></td></tr>
+                <tr><td colSpan={6} className="py-20 text-center"><Loader2 className="h-8 w-8 animate-spin text-cyan-500 mx-auto" /></td></tr>
               ) : customers.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center">
-                    <UserCheck className="h-10 w-10 text-neutral-200 mx-auto mb-2" />
-                    <p className="text-neutral-400">No customers found</p>
+                  <td colSpan={6} className="py-20 text-center">
+                    <UserCheck className="h-12 w-12 text-slate-200 mx-auto mb-3" />
+                    <p className="text-slate-400 font-medium">No customers found matching your criteria.</p>
                   </td>
                 </tr>
               ) : customers.map((c) => (
-                <tr key={c.id} className="hover:bg-neutral-50 transition-colors">
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-8 w-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-bold shrink-0">
+                <tr key={c.id} className="hover:bg-slate-50/80 transition-colors group">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-50 to-primary-50 text-cyan-700 flex items-center justify-center text-sm font-black shrink-0 border border-cyan-100 shadow-sm shadow-cyan-100/50">
                         {c.name[0].toUpperCase()}
                       </div>
-                      <span className="font-medium text-neutral-800">{c.name}</span>
+                      <span className="font-bold text-slate-800">{c.name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-neutral-600">{c.phone}</td>
-                  <td className="px-4 py-3 text-neutral-500">{c.email ?? '—'}</td>
-                  <td className="px-4 py-3 text-neutral-700 font-medium">{c.totalRepairs}</td>
-                  <td className="px-4 py-3 font-semibold text-neutral-800">₹{c.totalSpent.toLocaleString('en-IN')}</td>
-                  <td className="px-4 py-3 text-neutral-400 text-xs">{new Date(c.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
+                  <td className="px-6 py-4 font-medium text-slate-600">{c.phone}</td>
+                  <td className="px-6 py-4 font-medium text-slate-500">{c.email ?? '—'}</td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-lg">{c.totalRepairs}</span>
+                  </td>
+                  <td className="px-6 py-4 font-black text-emerald-600">₹{c.totalSpent.toLocaleString('en-IN')}</td>
+                  <td className="px-6 py-4 text-slate-500 text-xs font-medium">{new Date(c.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        
+        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-100">
-            <p className="text-xs text-neutral-500">Page {page} of {totalPages}</p>
-            <div className="flex gap-1.5">
-              <button onClick={() => setPage((p) => p - 1)} disabled={page === 1} className="p-1.5 rounded border border-neutral-200 hover:bg-neutral-50 disabled:opacity-40"><ChevronLeft className="h-4 w-4" /></button>
-              <button onClick={() => setPage((p) => p + 1)} disabled={page === totalPages} className="p-1.5 rounded border border-neutral-200 hover:bg-neutral-50 disabled:opacity-40"><ChevronRight className="h-4 w-4" /></button>
+          <div className="flex items-center justify-between px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+            <p className="text-sm font-medium text-slate-500">Showing page <span className="font-bold text-slate-700">{page}</span> of {totalPages}</p>
+            <div className="flex gap-2">
+              <button onClick={() => setPage((p) => p - 1)} disabled={page === 1} 
+                className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 transition-all shadow-sm">
+                <ChevronLeft className="h-5 w-5 text-slate-600" />
+              </button>
+              <button onClick={() => setPage((p) => p + 1)} disabled={page === totalPages} 
+                className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 transition-all shadow-sm">
+                <ChevronRight className="h-5 w-5 text-slate-600" />
+              </button>
             </div>
           </div>
         )}
