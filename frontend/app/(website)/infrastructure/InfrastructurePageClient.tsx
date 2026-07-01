@@ -83,7 +83,7 @@ export default function InfrastructurePageClient() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/30 via-[#020617]/90 to-[#020617]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-300/30 via-[#020617]/90 to-[#020617]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
           <p className="uppercase tracking-[0.2em] text-[10px] text-primary-400 font-bold mb-3">

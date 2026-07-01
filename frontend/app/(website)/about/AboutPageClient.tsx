@@ -108,7 +108,7 @@ export default function AboutPageClient() {
             className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/30 via-[#020617]/90 to-[#020617]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-300/30 via-[#020617]/90 to-[#020617]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">

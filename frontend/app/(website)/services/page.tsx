@@ -253,7 +253,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0">
           <Image src={img1} alt="Services bg" fill priority className="object-cover opacity-20 mix-blend-luminosity" />
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-primary-100/40 via-[#020617]/90 to-[#020617]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-primary-300/40 via-[#020617]/90 to-[#020617]" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
           <p className="text-primary-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Discover</p>
